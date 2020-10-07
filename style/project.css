@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
+
+*{
+    font-family: 'Bree Serif', serif;
+    padding: 0.2%;
+}
+
+body{
+     background-color: rgb(157, 187, 155)   
+}
+
+#nav{
+    display: flex;
+    padding: 5px 0px;
+    align-items: flex-start;
+}
+    .navItem{
+        background-color: rgb(198, 241, 195);
+        border: black 2px solid;
+        font-size: 20px;
+        text-align: center;
+        flex:1;
+        padding: 10px;
+        border-radius: 20px ;
+    }
+    .navItemLinkedin{
+        font-size: 20px;
+        text-align: center;
+        flex:1;
+    }
+        #linkedin{
+                width:50%;
+                background-color: none;
+                border: none;
+                flex:1;
+            }
+
+    .title{
+        flex:5;
+        text-align: center;
+        font-size: 40px;
+    }
+
+.container1{
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+    align-items:flex-start;
+    /* border: solid green 1px; */
+}
+.text{font-size: 20px;}
+
+    #text1{
+        padding: 0% 2%;  
+        font-size: 20px;  
+        /* border: solid yellow 1px; */
+        width: 80% ;
+    }
+        .formula{
+            /* border: solid green 1px;   */
+            display: flex; 
+            flex-direction: row;
+            align-items:flex-start;
+        }
+
+    #cad{  
+        width:45%;
+        /* border: solid yellow 1px; */
+        
+    }
+
+.container2{
+    display: flex;
+    flex-direction: row;
+    /* border: solid green 1px; */
+}
+   
+    #arduino{
+        padding: 0% 2%;  
+        flex:2;
+        /* border: solid green 1px; */
+    }
+    #prototype{  
+        flex:3;
+        /* border: solid green 1px;         */
+    }
+    #simulink{
+        flex:3;
+        /* border: solid green 1px;   */
+    }
+ 
+    /* #vid{}   */
+    .text2{
+        flex: 2;
+        font-size: 20px;
+        padding: 0% 2%; 
+    }
+
+.container3{
+    display: flex;
+    flex-direction: row;  
+}  
