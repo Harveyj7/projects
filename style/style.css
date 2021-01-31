@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+
+:root {
+  --height: 500px;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  font-family: "Bree Serif", serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: rgb(157, 187, 155);
+}
+
+
+.title {
+  padding: 1%;
+  text-align: center;
+  font-size: 50px;
+}
+
+nav {
+  position: relative;
+  /* perspective: 600px; */
+}
+.nav:hover {
+  background-color: rgb(198, 241, 195);
+}
+
+.cool > li > a {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+  display: inline-block;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.cool > li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  transition-duration: 0.4s;
+}
+.cool > li > a:hover {
+  background-color: rgb(198, 241, 195);
+}
+
+.dropdown {
+  opacity: 0;
+  position: absolute;
+  overflow: hidden;
+  padding: 20px;
+  top: -20px;
+  border-radius: 2px;
+  transition: all 0.5s;
+  transform: translateY(100px);
+  will-change: opacity;
+  display: none;
+}
+
+.trigger-enter .dropdown {
+  display: block;
+}
+
+.trigger-enter-active .dropdown {
+  opacity: 1;
+}
+
+.dropdownBackground {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1),
+    0 15px 35px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s, opacity 0.1s, transform 0.2s;
+  transform-origin: 50% 0;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+}
+
+.dropdownBackground.open {
+  opacity: 1;
+}
+
+.arrow {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background: white;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.bio {
+  min-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.7;
+}
+.social {
+  min-width: 200px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.bio img {
+  float: left;
+  margin-right: 20px;
+}
+
+.contact {
+  min-width: 20vw;
+}
+
+.contact li {
+  padding: 10px 0;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.dropdown a {
+  text-decoration: none;
+  color: #ffc600;
+}
+
+
+
+
+.items {
+  height: var(--height);
+  padding: 10px;
+  width: 100%;
+  /* border: 1px solid black; */
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+  transform: scale(0.98);
+  will-change: transform;
+  background: rgba(255, 255, 255, 0.1);
+  perspective: 10000px;
+  z-index: -1;
+    /* position:relative; */
+}
+
+
+.items.active {
+  background: rgba(255, 255, 255, 0.3);
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+  transform: scale(1);
+}
+
+.item:hover{
+  opacity:0.3;
+  background: black;
+  color: white;
+}
+.item {
+  width: var(--height);
+  height: calc(100% - 40px);
+  display: inline-flex;
+  /* align-items: center; */
+  padding:20px 10px;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 100;
+  color: black;
+  box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.15);
+  background:  white;
+}
+
+.glider {border: 1px solid white;width: 70%;  position:absolute; right:70px; bottom:20px;}
+.matlab { border: 1px solid white;width: 60%; position:absolute; right:120px; bottom:40px;}
+.obstacles { border: 1px solid white;width: 90%; position:absolute; right:10px; bottom:20px;}
+.magnets { border: 1px solid white;width: 90%; position:absolute; right:30px; bottom:20px;}
+.tableau { border: 1px solid white;width: 96%; position:absolute; right:10px; bottom:40px;}
+.python { border: 1px solid white;width: 60%; position:absolute; right:100px; bottom:40px;}
+.game { border: 1px solid white;width: 60%; position:absolute; right:100px; bottom:40px;}
+/* .item:nth-child(9n + 1) {background:  white;} */
+
+.item:nth-child(even) {transform: scaleX(1.31) rotateY(40deg);}
+.item:nth-child(odd) {transform: scaleX(1.31) rotateY(-40deg);}
+
+@media (max-width:600px){
+  .title {
+    font-size: 40px;
+  } 
+  .cool > li > a {
+    font-size: 15px;
+    text-align: center;
+    padding: 10px 10px;
+  }
+  .items {
+  height: 350px;
+  }
+  .item {
+    width: 350px;
+    font-size: 20px;
+  }
+.glider { position:absolute; right:40px; bottom:20px;}
+.matlab { position:absolute; right:90px; bottom:40px;}
+.obstacles { position:absolute; right:20px; bottom:20px;}
+.magnets { position:absolute; right:10px; bottom:20px;}
+.tableau {width: 94%; position:absolute; right:10px; bottom:40px;}
+.python { position:absolute; right:70px; bottom:40px;}
+.game { position:absolute; right:70px; bottom:40px;}
+}

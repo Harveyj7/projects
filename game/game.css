@@ -1,0 +1,111 @@
+html {
+  box-sizing: border-box;
+  background-color: rgb(157, 187, 155);
+  /* background: white; */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+form{
+  position: absolute;
+  top:26vh;
+  left:58vw;
+  /* border: black solid 2px; */
+  font-size: 40px;
+  
+}
+input {
+  display: inline;
+  /* flex-direction: column; */
+  width: 40px;
+  height: 40px;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Amatic SC", cursive;
+}
+
+.title {
+  text-align: center;
+  font-size: 70px;
+}
+
+.score {
+  font-size: 40px;
+}
+button{
+  font-size: 30px;
+}
+
+.game {
+  width: 60vw;
+  height: 60vh;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  /* border: black solid 2px; */
+}
+
+.hole {
+  flex: 1 0 33.33%;
+  overflow: hidden;
+  position: relative;
+}
+
+.hole:after {
+  display: block;
+  background: url(dirt.svg) bottom center no-repeat;
+  background-size: contain;
+  content: "";
+  width: 100%;
+  height: 70px;
+  position: absolute;
+  z-index: 2;
+  bottom: -30px;
+}
+
+.mole {
+  background: url("diglett.png") bottom center no-repeat;
+  background-size: 60%;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  transition: all 0.4s;
+}
+
+.hole.up .mole {
+  top: 0;
+}
+
+@media (max-width:500px){
+
+  form{
+    position: absolute;
+    top:20vh;
+    left: 28vw;
+    font-size: 6vw;
+  }
+
+  .score{
+    font-size: 100px;
+
+  }
+  button{
+    font-size: 6vw;
+  }
+  .title{
+  font-size: 120px;
+  padding: 60px;
+  }
+  .game {
+    width: 80vw;
+    height: 40vh;
+    /* border: teal 2px solid; */
+  }
+}
