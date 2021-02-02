@@ -2,7 +2,6 @@
 
 * {
   font-family: "Bree Serif", serif;
-  padding: 0.2%;
 }
 
 body {
@@ -33,58 +32,76 @@ nav {
   font-size: 40px;
 }
 
-.container1 {
-  display: flex;
-  /* flex-wrap: wrap; */
-  flex-direction: row;
-  align-items: flex-start;
-  border: solid green 1px;
-}
 .text {
   font-size: 20px;
   padding: 2% 15%;
 }
+.frames {
+  position: relative;
+  object-fit: contain;
+}
 
-img {
+.mySlides {
+  width: 100%;
+  min-height: 100%;
+}
+.mySlides2 {
+  width: 100%;
+  min-height: 100%;
+}
+.w3-btn {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  top: 45%;
+}
+.left {
+  left: -28px;
+}
+.right {
+  right: -32px;
+}
+
+.center {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-.formula {
-  border: solid green 1px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+img.mySlides {
+  border: black 2px solid;
 }
-
-.container2 {
-  display: flex;
-  flex-direction: row;
-  border: solid green 1px;
+img.mySlides2 {
+  /* box-shadow: inset 0 0 0 1px black; */
+  border: black 2px solid;
 }
-
-#arduino {
-  padding: 0% 2%;
-  flex: 2;
-  /* border: solid green 1px; */
+video {
+  transform: scale(2.2);
 }
-#prototype {
-  flex: 3;
-  /* border: solid green 1px;         */
-}
-#simulink {
-  flex: 3;
-  /* border: solid green 1px;   */
-}
-
-/* #vid{}   */
-.text2 {
-  flex: 2;
-  font-size: 20px;
-  padding: 0% 2%;
-}
-
-.container3 {
-  display: flex;
-  flex-direction: row;
+@media (max-width: 1000px) {
+  .title {
+    padding: 0 5%;
+  }
+  body {
+    padding: 0 3%;
+  }
+  .text {
+    padding: 1% 0.5%;
+    border: solid green 1px;
+    font-size: 18px;
+  }
+  .w3-btn {
+    width: 25px;
+    height: 40px;
+    top: 40%;
+  }
+  .left {
+    left: -20px;
+  }
+  .right {
+    right: -20px;
+  }
+  video {
+    transform: scale(1.3);
+  }
 }
