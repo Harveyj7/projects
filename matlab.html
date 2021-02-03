@@ -1,77 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style/project.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style/magnet.css" />
     <title>Harvey Jensen</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <nav id="nav">
-            <a class="navItem" href="index.html">home</a>
-            <a class="navItem" href="contactme.html">contact me</a>
-            <h1 class="title">FYP simulation & analysis </h1> 
-            <a class="navItemLinkedin" href=https://www.linkedin.com/in/harvey-j-51650388/ target=_blank> 
-                <img id="linkedin" src="images/linkedin.png">
-            </a>
-            <a class="navItemLinkedin" href="contactme.html">Harvey Jensen</a>
-        </nav>
+      <nav>
+        <a class="home" href="index.html">home</a>
+        <h1 class="title">FYP Simulation and Analysis</h1>
+      </nav>
     </div>
-   
-    <div class="container1">    
-        <div id="text1">
-            <p> Since all the prototyping could not be fully complete due to lack of resources,
-                I moved my Final Year Project to a modelling task. The system was modelled on Simulink 
-                with all the forces acting on the glider in motion. First, the lift and drag forces on 
-                the glider were to be determined from CFX results. The glider oriented at a range of angles 
-                was modelled with laminar fluid flow. Using Bernouille's Equation rearranged, the Drag and lift coefficients 
-                for each pitch angle could be calculated from the simulation results
-                
-            </p>
-            <div class="formula">
-                <img  width=30% src="images/fluideq.png">  
-                Using this, the CFD simulation was run for the glider travelling
-                at the range of angles expected in its transit (+/-35 deg to the longditudinal axis). The drag coffecient
-                was plotted against the pitch as shown.   
-            </div>
-            <div> 
-                <img width=100% src="images/dragcoeff.png">
-            </div>
-        </div>
-        <div id="cad">
-            <img width=100% src="images/cfd.png">
-            <p class="text2">                 
-                These CFD results as well as other required parameters in the Bernouille Eq were then implemented as
-                inputs into the Simulink model created to analyse
-                the glider in motion. The model was set up with a vertical forces subsystem and a horizontal forces 
-                one. 
-            </p>
-            <div>
-                <img width=80% src="images/fbd.png">
-            </div>
-        </div>
-          
+
+    <div class="text">
+      <p>
+        Since all the prototyping could not be fully complete due to lack of
+        resources, I moved my Final Year Project to a modelling task. The system
+        was modelled on Simulink with all the forces acting on the glider in
+        motion. First, the lift and drag forces on the glider were to be
+        determined from CFX results. The glider oriented at a range of angles
+        was modelled with laminar fluid flow. Using <b>Bernouille's Equation</b>
+        <img class="equation" src="images/fluideq.png" />
+        rearranged, the Drag and lift coefficients for each pitch angle could be
+        calculated from the simulation results in the range of angles expected
+        in its transit (+/-35 deg to the longditudinal axis). The drag
+        coffecient was plotted against the pitch as shown. Using this, the CFD
+        simulation was run for the glider travelling at 0.25m/s.
+      </p>
+      <div class="frames">
+        <img class="mySlides center" src="images/cfd.png" />
+        <img class="mySlides center graph" src="images/graph.png" />
+        <button class="w3-btn left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-btn right" onclick="plusDivs(+1)">&#10095;</button>
+      </div>
+      <p>
+        These CFD results as well as other required parameters in the Bernouille
+        Eq were then implemented as inputs into the Simulink model created to
+        analyse the glider in motion. The model was set up with a vertical
+        forces subsystem and a horizontal forces one.
+      </p>
+      <div class="frames">
+        <img class="mySlides2 center" src="images/fbd.png" />
+        <img class="mySlides2 center" src="images/pitch.png" />
+        <img class="mySlides2 simulink center" src="images/simulink.png" />
+        <button class="w3-btn left" onclick="plusDivs2(-1)">&#10094;</button>
+        <button class="w3-btn right" onclick="plusDivs2(1)">&#10095;</button>
+      </div>
+      <p>
+        First, for the vertical forces subsystem, the free body diagram shown
+        was assessed to obtain the governing equation which was expanded as
+        shown given the buoyancy and weight definitions. This was then directly
+        applied as the series of signals into the summation block in the
+        simulink model (3rd image- click to zoom). A rotating model with the
+        moments acting on the glider was also made to assess the glider rotation
+        in pitch.
+        <br /><br />
+        <img class="center full" src="images/result.png" />
+        <br />
+        There was a large set of valuable results obtained from the simulink
+        model. Overall the main ones found were that the glider was found to
+        reach a terminal velocity of approximately 0.1m/s at a pitch angle of
+        35deg at steady state. Varying the motor control would allow the
+        sawtooth profile of the glider to be controlled.
+      </p>
     </div>
-    <div class="container2">    
-        <div class="text2"> 
-            First, for the vertical forces subsystem, the free body diagram shown was assessed to obtain the governing 
-            equation which was expanded as shown given the buoyancy and weight definitions. This was then directly 
-            applied as the series of signals into the summation block
-            <br><br>
-            A rotating model with the moments acting on the glider was also made to assess the glider rotation in pitch.
-            <br><br>
-            There was a large set of valuable results obtained from the simulink model. Overall the main ones found were that the glider 
-            was found to reach a terminal velocity of approximately 0.1m/s at a pitch angle of 35deg at steady state. 
-            Varying the motor control would allow the sawtooth profile of the glider to be controlled.
-        </div>
-        <div id="simulink">
-            <img width=100% src="images/simulink.png">
-        </div>   
-    </div>
-    <div class="container3"> 
-        
-        <div>  
-                
-        </div>
-    </div>
+    <script>
+      const boldword = document.querySelector("b");
+      const image = document.querySelector(".equation");
+      const text = document.querySelector(".text p");
+      const alltext = document.querySelector(".text");
+      const simulink = document.querySelector(".simulink");
+      const body = document.querySelector("body");
+
+      function showImg() {
+        image.style.display = "block";
+        image.style.position = relative;
+        text.style.opacity = 0.2;
+      }
+      function removeImg() {
+        image.style.display = "none";
+        text.style.opacity = " 1";
+      }
+
+      ////
+      const buttons = document.querySelectorAll(".w3-btn right");
+      var slideIndex = 1;
+      showDivs(slideIndex);
+
+      // var slideIndex2 = 1;
+      showDivs2(slideIndex);
+
+      function plusDivs(n) {
+        showDivs((slideIndex += n));
+      }
+
+      function plusDivs2(n) {
+        showDivs2((slideIndex += n));
+      }
+
+      function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = x.length;
+        }
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+      }
+      function showDivs2(n) {
+        var y = document.getElementsByClassName("mySlides2");
+        if (n > y.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = y.length;
+        }
+
+        for (i = 0; i < y.length; i++) {
+          y[i].style.display = "none";
+        }
+        y[slideIndex - 1].style.display = "block";
+      }
+
+      function leave() {
+        alltext.style.padding = "1% 15%";
+        body.style.padding = "1% 5%";
+      }
+
+      simulink.addEventListener("mousedown", () => {
+        alltext.style.padding = "1% 1%";
+        body.style.padding = "1% 2%";
+      });
+      simulink.addEventListener("mouseover", () => {
+        this.innerHTML = "zoom";
+      });
+      simulink.addEventListener("mouseup", leave);
+      simulink.addEventListener("mouseleave", leave);
+      boldword.addEventListener("mouseover", showImg);
+      boldword.addEventListener("mouseleave", removeImg);
+    </script>
+  </body>
+</html>

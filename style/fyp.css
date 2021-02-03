@@ -87,7 +87,7 @@ video {
   }
   .text {
     padding: 1% 0.5%;
-    border: solid green 1px;
+    /* border: solid green 1px; */
     font-size: 18px;
   }
   .w3-btn {
