@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style/magnet.css" />
+    <link rel="stylesheet" type="text/css" href="style/matlab.css" />
     <title>Harvey Jensen</title>
   </head>
   <body>
@@ -21,7 +21,8 @@
         was modelled on Simulink with all the forces acting on the glider in
         motion. First, the lift and drag forces on the glider were to be
         determined from CFX results. The glider oriented at a range of angles
-        was modelled with laminar fluid flow. Using <b>Bernouille's Equation</b>
+        was modelled with laminar fluid flow. <br /><br />
+        Using <b>Bernouille's Equation</b>
         <img class="equation" src="images/fluideq.png" />
         rearranged, the Drag and lift coefficients for each pitch angle could be
         calculated from the simulation results in the range of angles expected
@@ -31,7 +32,7 @@
       </p>
       <div class="frames">
         <img class="mySlides center" src="images/cfd.png" />
-        <img class="mySlides center graph" src="images/graph.png" />
+        <img class="mySlides center" src="images/graph.png" />
         <button class="w3-btn left" onclick="plusDivs(-1)">&#10094;</button>
         <button class="w3-btn right" onclick="plusDivs(+1)">&#10095;</button>
       </div>
@@ -66,6 +67,11 @@
         sawtooth profile of the glider to be controlled.
       </p>
     </div>
+    <footer>
+      <a class="home center" href="fyp.html">Page 1</a>
+      <!-- <a class="home" href="fyp.html">Page 2</a> -->
+    </footer>
+
     <script>
       const boldword = document.querySelector("b");
       const image = document.querySelector(".equation");

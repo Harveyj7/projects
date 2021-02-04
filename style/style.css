@@ -185,49 +185,42 @@ nav ul {
 }
 
 .glider {
-  border: 1px solid white;
   width: 70%;
   position: absolute;
   right: 70px;
   bottom: 20px;
 }
 .matlab {
-  border: 1px solid white;
   width: 60%;
   position: absolute;
   right: 120px;
   bottom: 40px;
 }
 .obstacles {
-  border: 1px solid white;
   width: 90%;
   position: absolute;
   right: 10px;
   bottom: 20px;
 }
 .magnets {
-  border: 1px solid white;
   width: 90%;
   position: absolute;
   right: 30px;
   bottom: 20px;
 }
 .tableau {
-  border: 1px solid white;
   width: 96%;
   position: absolute;
   right: 10px;
   bottom: 40px;
 }
 .python {
-  border: 1px solid white;
   width: 60%;
   position: absolute;
   right: 100px;
   bottom: 40px;
 }
 .game {
-  border: 1px solid white;
   width: 60%;
   position: absolute;
   right: 100px;

@@ -9,7 +9,6 @@ body {
   /* border: solid green 1px; */
   padding: 1% 5%;
 }
-
 nav {
   display: flex;
   padding: 5px 0px;
@@ -25,7 +24,6 @@ nav {
   padding: 10px;
   border-radius: 5px;
 }
-
 .title {
   flex: 6;
   padding: 0 22%;
@@ -40,14 +38,26 @@ nav {
   position: relative;
   object-fit: contain;
 }
+.full {
+  width: 100%;
+  border: black 2px solid;
+}
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 .mySlides {
+  border: black 2px solid;
   width: 100%;
   min-height: 100%;
 }
+
 .mySlides2 {
   width: 100%;
   min-height: 100%;
+  border: black 2px solid;
 }
 .w3-btn {
   display: block;
@@ -62,33 +72,34 @@ nav {
 .right {
   right: -32px;
 }
+.equation {
+  width: 13%;
+  border: black solid 2px;
+  display: none;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-img.mySlides {
-  border: black 2px solid;
-}
-img.mySlides2 {
-  /* box-shadow: inset 0 0 0 1px black; */
-  border: black 2px solid;
-}
-video {
-  transform: scale(2.2);
-}
 @media (max-width: 1000px) {
   .title {
-    padding: 0 5%;
+    padding: 0 8%;
+    font-size: 30px;
   }
   body {
     padding: 0 3%;
   }
   .text {
     padding: 1% 0.5%;
-    /* border: solid green 1px; */
     font-size: 18px;
+  }
+  .equation {
+    width: 33%;
+    border: black solid 2px;
+    display: none;
+    position: absolute;
+    top: 70%;
+    left: 30%;
   }
   .w3-btn {
     width: 25px;
@@ -100,9 +111,6 @@ video {
   }
   .right {
     right: -20px;
-  }
-  video {
-    transform: scale(1.3);
   }
 }
 

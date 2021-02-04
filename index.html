@@ -75,63 +75,43 @@
     <div class="items">
       <div class="item">
         Final Year project
-        <a
-          onclick="return false"
-          ondblclick="location=this.href"
-          href="fyp.html"
-        >
+        <a href="fyp.html">
           <img class="glider" src="images\Glider.png" />
         </a>
       </div>
-      <!-- <div class="item">
-        Matlab project
-        <a
-          onclick="return false"
-          ondblclick="location=this.href"
-          href="matlab.html"
-        >
-          <img class="matlab" src="images\matlab.png" />
+      <div class="item">
+        JavaScript game
+        <a href="game/game.html">
+          <img class="game" src="game\diglett.png" />
         </a>
-      </div> -->
+      </div>
       <div class="item">
         Group Business Design Project
-        <a onclick="return false" ondblclick="location=this.href" href="#">
+        <a href="gbdp.html">
           <img class="obstacles" src="images\OTD.png" />
         </a>
       </div>
       <div class="item">
         Renishaw Magnet FEA/ FEMM
-        <a
-          onclick="return false"
-          ondblclick="location=this.href"
-          href="magnets.html"
-        >
+        <a href="magnets.html">
           <img class="magnets" src="images\magnets.png" />
         </a>
       </div>
       <div class="item">
         Tableau application project
-        <a onclick="return false" ondblclick="location=this.href" href="#">
+        <a href="tableau.html">
           <img class="tableau" src="images\map.png" />
         </a>
       </div>
       <div class="item">
         Python Text Based Game
-        <a onclick="return false" ondblclick="location=this.href" href="#">
+        <a href="#">
           <img class="python" src="images\python.png" />
         </a>
       </div>
+
       <div class="item">
-        JavaScript game<a
-          onclick="return false"
-          ondblclick="location=this.href"
-          href="game/game.html"
-        >
-          <img class="game" src="game\diglett.png" />
-        </a>
-      </div>
-      <div class="item">
-        |<a onclick="return false" ondblclick="location=this.href" href="#">
+        |<a href="#">
           <img class="python" src="images\python.png" />
         </a>
       </div>
@@ -146,7 +126,9 @@
       let isDown = false;
       let startX;
       let scrollLeft;
+      let mylatesttap;
 
+      //Opening and closing nav bar
       function handleEnter() {
         this.classList.add("trigger-enter");
         setTimeout(
@@ -191,6 +173,27 @@
         });
       }
 
+      //Doubletap open links
+      function doubletap(e) {
+        var now = new Date().getTime();
+        var timesince = now - mylatesttap;
+        if (timesince < 350 && timesince > 0) {
+          console.log("yes");
+          location = this.children[0].href;
+        } else {
+          console.log("no");
+        }
+        mylatesttap = new Date().getTime();
+      }
+
+      function open(e) {
+        location = this.children[0].href;
+      }
+      function dontopen(e) {
+        e.preventDefault();
+      }
+
+      //Eventlisteners
       triggers.forEach((trigger) =>
         trigger.addEventListener("mouseenter", handleEnter)
       );
@@ -222,6 +225,10 @@
         const walk = (x - startX) * 3;
         slider.scrollLeft = scrollLeft - walk;
       });
+
+      items.forEach((item) => item.addEventListener("touchstart", doubletap));
+      items.forEach((item) => item.addEventListener("dblclick", open));
+      items.forEach((item) => item.addEventListener("click", dontopen));
     </script>
   </body>
 </html>
