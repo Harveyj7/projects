@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
     <title>Whack A Diglett!</title>
     <link
       href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700"
@@ -11,17 +13,17 @@
     <link rel="stylesheet" href="game.css" />
   </head>
   <body>
-    <div class='title'>
+    <div class="title">
       Whack-a-Pokemon!
       <div class="score">0</div>
       <button>Start!</button>
     </div>
     <form>
-      <input type="radio" id="box" name="radio" value="easy">
+      <input type="radio" id="box" name="radio" value="easy" />
       <label for="easy"> Easy</label>
-      <input type="radio" id="box" name="radio" value="medium">
+      <input type="radio" id="box" name="radio" value="medium" />
       <label for="medium"> Medium</label>
-      <input type="radio" id="box" name="radio" value="hard">
+      <input type="radio" id="box" name="radio" value="hard" />
       <label for="hard"> Hard</label>
     </form>
 
@@ -51,32 +53,24 @@
       const scoreBoard = document.querySelector(".score");
       const moles = document.querySelectorAll(".mole");
       const boxes = document.querySelectorAll('input[type="radio"]');
-      const button = document.querySelector('button');
+      const button = document.querySelector("button");
       let lower;
       let upper;
 
-      function handleCheck(){
+      function handleCheck() {
         // console.logs(this.value);
-        if(this.value==='easy'){
-          lower= 600;
-          upper= 900;
-        }else if(this.value==='medium'){
-          lower= 300;
-          upper= 700;
-        }else{
-          lower= 300;
-          upper= 600;
+        if (this.value === "easy") {
+          lower = 600;
+          upper = 900;
+        } else if (this.value === "medium") {
+          lower = 300;
+          upper = 700;
+        } else {
+          lower = 300;
+          upper = 600;
         }
-        boxes.forEach(box=>{
-          if(box.checked){
-            console.log('yeh')
-          }else{
-            console.log('no')
-            
-          }
-        });
       }
-      
+
       let lastHole;
       let timeUp = false;
       // let lastScore;
@@ -84,18 +78,18 @@
       // scoresBoard.textContent = `last score: ${lastScore}`;
       let lastScore;
       let score = 0;
-      
+
       function randomTime(min, max) {
         return Math.round(Math.random() * (max - min) + min);
       }
-      
+
       function randomHole(holes) {
         const idx = Math.floor(Math.random() * holes.length);
         const hole = holes[idx];
         if (hole === lastHole) {
           return randomHole(holes);
         }
-        console.log(hole);
+        // console.log(hole);
         lastHole = hole;
         return hole;
       }
@@ -109,22 +103,19 @@
           if (!timeUp) peep();
         }, time);
       }
-      
+
       function startGame() {
         lastScore = JSON.parse(localStorage.getItem("score")) || "";
         // location.reload();
         console.log(lastScore);
-        
+
         score = 0;
         timeUp = false;
         peep();
         setTimeout(() => (timeUp = true), 20000);
       }
-      
-      // function bonk(e, lastScore) {
-        
-        // }
-        moles.forEach((mole) =>
+
+      moles.forEach((mole) =>
         mole.addEventListener("click", function (e, lastScore) {
           // bonk(e, lastScore);
           // lastScore = parseInt(lastScore);
@@ -137,11 +128,11 @@
           scoreBoard.textContent = score;
           localStorage.setItem("score", JSON.stringify(score));
         })
-        );
-        boxes.forEach(box => box.addEventListener('click', handleCheck));
-        boxes.forEach(box => box.addEventListener('touch', handleCheck));
-        button.addEventListener('click', startGame);
-        </script>
+      );
+
+      boxes.forEach((box) => box.addEventListener("click", handleCheck));
+      boxes.forEach((box) => box.addEventListener("touch", handleCheck));
+      button.addEventListener("click", startGame);
+    </script>
   </body>
-  </html>
-  
+</html>

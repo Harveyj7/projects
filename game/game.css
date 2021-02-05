@@ -9,16 +9,15 @@ html {
 *:after {
   box-sizing: inherit;
 }
-form{
+form {
   position: absolute;
-  top:26vh;
-  left:58vw;
+  top: 26vh;
+  left: 58vw;
   /* border: black solid 2px; */
   font-size: 40px;
-  
 }
 input {
-  display: inline;
+  /* display: inline-block; */
   /* flex-direction: column; */
   width: 40px;
   height: 40px;
@@ -38,8 +37,9 @@ body {
 .score {
   font-size: 40px;
 }
-button{
+button {
   font-size: 30px;
+  z-index: 10;
 }
 
 .game {
@@ -80,32 +80,56 @@ button{
 }
 
 .hole.up .mole {
-  top: 0;
+  top: 20px;
 }
 
-@media (max-width:500px){
-
-  form{
+@media (max-width: 600px) {
+  form {
     position: absolute;
-    top:20vh;
-    left: 28vw;
+    top: 22vh;
+    left: 25vw;
     font-size: 6vw;
   }
-
-  .score{
-    font-size: 100px;
-
+  input {
+    /* flex-direction: column; */
+    display: inline-block;
+    width: 20px;
+    height: 20px;
   }
-  button{
-    font-size: 6vw;
+
+  .score {
+    font-size: 50px;
+    /* position: absolute;
+    top: 15vh;
+    left: 8vw; */
   }
-  .title{
-  font-size: 120px;
-  padding: 60px;
+  button {
+    font-size: 10vw;
+    position: absolute;
+    top: 30vh;
+    left: 37vw;
+  }
+  .title {
+    font-size: 50px;
+    /* padding: 60px; */
   }
   .game {
-    width: 80vw;
-    height: 40vh;
+    position: absolute;
+    top: 66vw;
+    left: 5vw;
+    width: 90vw;
+    height: 50vh;
     /* border: teal 2px solid; */
+  }
+  .hole:after {
+    bottom: -20px;
+    /* border: black solid 2px; */
+    height: 40px;
+  }
+  .mole {
+    background-size: 80%;
+  }
+  .hole.up .mole {
+    top: 10px;
   }
 }

@@ -186,9 +186,9 @@
         mylatesttap = new Date().getTime();
       }
 
-      function open() {
-        location = this.children[0].href;
-      }
+      // function open() {
+      //   location = this.children[0].href;
+      // }
       function dontopen(e) {
         e.preventDefault();
       }
@@ -226,9 +226,27 @@
         slider.scrollLeft = scrollLeft - walk;
       });
 
+      function hasmoved(e) {
+        // console.log(e.pageX, e.pageY);
+        let x2;
+        let y2;
+        console.log(e);
+        if (e.type === "mousedown") {
+          [x1, y1] = [e.screenX, e.screenY];
+          console.log(e.type);
+        } else {
+          [x2, y2] = [e.screenX, e.screenY];
+          console.log(e.type);
+        }
+        if (x1 === x2 && y1 === y2) {
+          location = this.children[0].href;
+        }
+      }
       items.forEach((item) => item.addEventListener("touchstart", doubletap));
-      items.forEach((item) => item.addEventListener("dblclick", open));
+      // items.forEach((item) => item.addEventListener("dblclick", open));
       items.forEach((item) => item.addEventListener("click", dontopen));
+      items.forEach((item) => item.addEventListener("mousedown", hasmoved));
+      items.forEach((item) => item.addEventListener("mouseup", hasmoved));
     </script>
   </body>
 </html>
