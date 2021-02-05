@@ -226,7 +226,6 @@ nav ul {
   right: 100px;
   bottom: 40px;
 }
-/* .item:nth-child(9n + 1) {background:  white;} */
 
 .item:nth-child(even) {
   transform: scaleX(1.31) rotateY(40deg);
