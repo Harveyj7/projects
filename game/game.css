@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
+
 html {
   box-sizing: border-box;
   background-color: rgb(157, 187, 155);
@@ -9,11 +11,28 @@ html {
 *:after {
   box-sizing: inherit;
 }
+nav {
+  display: flex;
+  position: fixed;
+  padding: 5%;
+  align-items: center;
+  /* border: black solid 2px; */
+}
+.home {
+  font-family: "Bree Serif", serif;
+  background: rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 form {
   position: absolute;
-  top: 26vh;
+  top: 30vh;
   left: 58vw;
-  /* border: black solid 2px; */
   font-size: 40px;
 }
 input {
@@ -32,10 +51,13 @@ body {
 .title {
   text-align: center;
   font-size: 70px;
+  /* padding: 3%; */
 }
 
 .score {
-  font-size: 40px;
+  font-size: 60px;
+  color: rgb(119, 0, 255);
+  font-weight: 900;
 }
 button {
   font-size: 30px;
@@ -99,9 +121,6 @@ button {
 
   .score {
     font-size: 50px;
-    /* position: absolute;
-    top: 15vh;
-    left: 8vw; */
   }
   button {
     font-size: 10vw;
