@@ -1,39 +1,87 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
 
-.container {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+form {
+  position: absolute;
+  top: auto;
+  right: 35vw;
+}
+body {
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 30px;
+  color: #777;
+  background-color: rgb(157, 187, 155);
+}
+nav {
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
+  position: fixed;
+  padding: 5%;
+  align-items: center;
+  /* border: black solid 2px; */
 }
-.container.open {
-  opacity: 0.2;
+.home {
+  font-family: "Bree Serif", serif;
+  background: rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
 }
-.box {
-    border: solid black 1px;
-    text-align: center;
-    width: 31vw;
-    font-size: 22px;
-    background-color: white;
-    transition-duration: 0.4s;
-  }
-  .box:hover {
-    background-color: rgb(198, 241, 195);
-  }
-  
-  .glider {
-    width: 75%;
-  }
-  .obstacles {
-    width: 95%;
-  }
-  .magnets {
-    width: 95%;
-  }
-  .python {
-    width: 75%;
-  }
-  .tableau {
-    width: 95%;
-  }
-  .matlab {
-    width: 70%;
-  }
+
+div.elem-group {
+  margin: 40px 0;
+}
+
+label {
+  display: block;
+  font-family: "Aleo";
+  padding-bottom: 4px;
+  font-size: 1.25em;
+}
+
+input,
+select,
+textarea {
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-family: "Aleo";
+  width: 500px;
+  padding: 8px;
+}
+
+textarea {
+  height: 250px;
+}
+
+button {
+  height: 50px;
+  background: green;
+  color: white;
+  border: 2px solid darkgreen;
+  font-size: 1.25em;
+  font-family: "Aleo";
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  border: 2px solid black;
+}

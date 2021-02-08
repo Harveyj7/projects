@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.container.open {
+  opacity: 0.2;
+}
+.box {
+  border: solid black 1px;
+  text-align: center;
+  width: 31vw;
+  font-size: 22px;
+  background-color: white;
+  transition-duration: 0.4s;
+}
+.box:hover {
+  background-color: rgb(198, 241, 195);
+}
+
+.glider {
+  width: 75%;
+}
+.obstacles {
+  width: 95%;
+}
+.magnets {
+  width: 95%;
+}
+.python {
+  width: 75%;
+}
+.tableau {
+  width: 95%;
+}
+.matlab {
+  width: 70%;
+}
