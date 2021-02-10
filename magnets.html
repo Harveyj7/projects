@@ -1,65 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style/magnet.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style/magnet.css" />
     <title>Harvey Jensen</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <nav id="nav">
-            <a class="navItem" href="index.html">home</a>
-            <a class="navItem" href="contactme.html">contact me</a>
-            <h1 class="title">Renishaw FEMM magnetics investigation </h1> 
-            <a class="navItemLinkedin" href=https://www.linkedin.com/in/harvey-j-51650388/ target=_blank> 
-                <img id="linkedin" src="images/linkedin.png">
-            </a>
-            <a class="navItemLinkedin" href="contactme.html">Harvey Jensen</a>
-        </nav>
+      <nav>
+        <a class="home" href="index.html">home</a>
+        <h1 class="title">Renishaw FEMM magnetics investigation</h1>
+      </nav>
     </div>
-   
-    <div class="container1">    
-        <div class="text1">
-            <p > 
-                The new CMM product project required strong attractive forces to lock/unlock a hirth coupling mechanism in fixed angular 
-                positions when scanning.
-                <br><br>    
-                Using Finite Element Magnetics Modelling (FEMM4.2) with an iteration program run through Lua scripts, the forces 
-                between two N42 grade ring magnets with OD of 46mm and ID of 36mm were analyzed at thicknesses of 0 to 10mm.
-            </p>
-        </div>
-        <div class="femm">
-            <img width=80% src="images/magnet1.png">
-        </div> 
+    <div class="text">
+      <p>
+        The new CMM product project required strong attractive forces to
+        lock/unlock a hirth coupling mechanism in fixed angular positions when
+        scanning.
+        <br /><br />
+        Using Finite Element Magnetics Modelling (FEMM4.2) with an iteration
+        program run through Lua scripts, the forces between two N42 grade ring
+        magnets with OD of 46mm and ID of 36mm were analyzed at thicknesses of 0
+        to 10mm.
+      </p>
+
+      <div class="femm">
+        <img src="images/magnet1.png" />
+      </div>
+
+      <p>
+        An analysis of two ring magnets with a fixed outer diameter of 46mm and
+        a thickness of 3mm was automated using a Lua script to run a iterable
+        internal radius from r=23mm to r=0mm.
+        <br /><br />
+        The results obtained show that decreasing the inner radius of the ring
+        magnet increases the attractive force up to 16mm (ID32) (EDIT IMAGE
+        XLABEL), where its slowly drops to 95N when it becomes a disk magnet.
+      </p>
+
+      <div class="femm">
+        <img src="images/magnet2.png" />
+      </div>
+
+      <p>
+        Another invstigation of the effect of magnetic flux containment with a
+        stainless-steel housing around the magnet were undertaken.
+        <br /><br />
+        This was another considered option for the design of the probe because
+        stonger attractive forces could be achieved between the steel encased
+        magnets.
+      </p>
+
+      <div class="femm">
+        <img src="images/magnet3.png" />
+      </div>
     </div>
-    <div class="container2">  
-        <div class="text1">
-            <p>
-            An analysis of two ring magnets with a fixed outer diameter of 46mm and a thickness of 3mm was automated using a 
-            Lua script to run a iterable internal radius from r=23mm to r=0mm.  
-            <br><br>
-            The results obtained show that decreasing the inner radius of the ring magnet increases the attractive force 
-            up to 16mm (ID32) (EDIT IMAGE XLABEL), where its slowly drops to 95N when it becomes a disk magnet.
-            </p>
-        </div>  
-        <div class="femm">
-            <img width=90% src="images/magnet2.png">
-        </div>
-    </div>
-    <div class="container3">  
-        <div class="text1">
-            <p>
-            Another invstigation of the effect of magnetic flux containment with a stainless-steel housing 
-            around the magnet were undertaken.
-            <br><br> 
-            This was another considered option for the design of the probe
-            because stonger attractive forces could be achieved between the steel encased magnets.
-            </p>
-        </div>    
-        <div class="femm">
-            <img width=100% src="images/magnet3.png">
-        </div> 
-    </div> 
-</body>
+    <script>
+      const images = document.querySelectorAll("img");
+
+      function zoom() {
+        this.style.transition = "width 0.5s ease 0s";
+        this.style.width = "100%";
+      }
+      function zoomOut() {
+        this.style.width = "40%";
+      }
+
+      images.forEach((image) => image.addEventListener("mouseover", zoom));
+      images.forEach((image) => image.addEventListener("mouseleave", zoomOut));
+    </script>
+  </body>
 </html>
