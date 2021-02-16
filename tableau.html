@@ -7,20 +7,36 @@
     <title>Harvey Jensen</title>
   </head>
   <body>
-    <div>
-      <nav>
-        <a class="home" href="index.html">home</a>
-        <h1 class="title">Tableau Covid analysis</h1>
-      </nav>
+    <div class="top">
+      <div class="dropdownBackground">
+        <div class="arrow"></div>
+      </div>
+      <a class="home" href="index.html">Home</a>
+      <div class="cool">
+        <a href="#">Information</a>
+        <div class="dropdown">
+          <div class="bio">
+            <p>
+              As an application for a course delivered by the Information Lab, I
+              created a Data Visualisation dashbord on Tableau which display a
+              range of statistics on the ongoing Coronavirus pandemic, I chose
+              this topic for my visualisation because I was keen to obtain an
+              worldwide picture of the spread of Covid and visually inspect data
+              which has been analysed less such cases and deaths per capita.
+              This project allowed me to teach myself the new software- Tableau-
+              and at the same time, create clear timeline of the pandemic
+              globally.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="title">Tableau Covid analysis</div>
     </div>
     <!-- prettier-ignore -->
-    <div class="tableauPlaceholder" id="viz1613129136367" style="position: relative">
-        <noscript>
-            <a href="#">
-            <img alt=" " src="https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Co&#47;CoronavirusStatistics6&#47;HarveyJensen&#47;1_rss.png" style="border: none" />
-            </a>
-        </noscript>
-        <object class="tableauViz" style="display: none">
+    <div class="tableauPlaceholder" id="viz1613129136367">
+  
+        <object class="tableauViz" >
             <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F" />
             <param name="embed_code_version" value="3" />
             <param name="site_root" value="" />
@@ -37,25 +53,67 @@
         </object>
     </div>
     <script type="text/javascript">
-      window.scrollTo(4, 0);
-      //   window.addEventlistener("load", () => window.scrollTo(4, 0));
-
+      var body = document.querySelector("body");
       var divElement = document.getElementById("viz1613129136367");
-      var vizElement = divElement.getElementsByTagName("object")[0];
-      if (divElement.offsetWidth > 800) {
-        vizElement.style.width = "1366px";
-        vizElement.style.height = "795px";
-      } else if (divElement.offsetWidth > 500) {
-        vizElement.style.width = "1366px";
-        vizElement.style.height = "795px";
-      } else {
-        vizElement.style.width = "100%";
-        vizElement.style.height = "1627px";
-      }
+      var vizElement = document.getElementsByTagName("object")[0];
+
+      // console.log(`${document.body.offsetWidth}px`);
+      vizElement.style.width = `${document.body.offsetWidth + 20}px`;
+      divElement.style.webkitTransform = "scale(0.96)";
+      // vizElement.style.webkitScrollbar = "none";
+      vizElement.style.height = "795px";
+
       var scriptElement = document.createElement("script");
       scriptElement.src =
         "https://public.tableau.com/javascripts/api/viz_v1.js";
       vizElement.parentNode.insertBefore(scriptElement, vizElement);
+
+      //OPENING AND CLOSING NAV BAR
+
+      const trigger = document.querySelector(".cool");
+      const link = trigger.querySelector("a");
+      const background = document.querySelector(".dropdownBackground");
+      const text = document.querySelector(".bio");
+      const nav = document.querySelector(".top");
+
+      function handleEnter() {
+        trigger.classList.add("trigger-enter");
+        setTimeout(
+          () =>
+            trigger.classList.contains("trigger-enter") &&
+            trigger.classList.add("trigger-enter-active"),
+          150
+        );
+        background.classList.add("open");
+
+        divElement.style.setProperty("opacity", "0.1");
+        const dropdown = trigger.querySelector(".dropdown");
+        const dropdownCoords = dropdown.getBoundingClientRect();
+        const navCoords = nav.getBoundingClientRect();
+
+        const coords = {
+          height: dropdownCoords.height,
+          width: dropdownCoords.width,
+          top: dropdownCoords.top - navCoords.top,
+          left: dropdownCoords.left - navCoords.left,
+        };
+        background.style.setProperty("width", `${coords.width}px`);
+        background.style.setProperty("height", `${coords.height}px`);
+
+       background.style.setProperty(
+          "transform", document.body.offsetWidth>1100?
+          `translate(${coords.left-50}px, ${coords.top-10}px)`:`translate(${coords.left}px, ${coords.top}px)`
+       );
+      }
+
+      function handleLeave() {
+        trigger.classList.remove("trigger-enter", "trigger-enter-active");
+        background.classList.remove("open");
+        divElement.style.removeProperty("opacity");
+      }
+
+      link.addEventListener("mouseenter", handleEnter);
+      link.addEventListener("mouseleave", handleLeave);
     </script>
   </body>
 </html>
