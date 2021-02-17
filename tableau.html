@@ -57,10 +57,8 @@
       var divElement = document.getElementById("viz1613129136367");
       var vizElement = document.getElementsByTagName("object")[0];
 
-      // console.log(`${document.body.offsetWidth}px`);
       vizElement.style.width = `${document.body.offsetWidth + 20}px`;
       divElement.style.webkitTransform = "scale(0.96)";
-      // vizElement.style.webkitScrollbar = "none";
       vizElement.style.height = "795px";
 
       var scriptElement = document.createElement("script");
@@ -100,10 +98,12 @@
         background.style.setProperty("width", `${coords.width}px`);
         background.style.setProperty("height", `${coords.height}px`);
 
-       background.style.setProperty(
-          "transform", document.body.offsetWidth>1100?
-          `translate(${coords.left-50}px, ${coords.top-10}px)`:`translate(${coords.left}px, ${coords.top}px)`
-       );
+        background.style.setProperty(
+          "transform",
+          document.body.offsetWidth > 1100
+            ? `translate(${coords.left - 50}px, ${coords.top - 10}px)`
+            : `translate(${coords.left}px, ${coords.top}px)`
+        );
       }
 
       function handleLeave() {
