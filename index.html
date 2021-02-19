@@ -29,7 +29,13 @@
           </div>
         </li>
         <li>
-          <a href="contact.html">Contact</a>
+          <!-- <a
+            onclick="javascript:GoToContactPage()"
+            href="javascript:void(0)"
+            href="nodecontactform\views\layouts\main.handlebars"
+            >Contact</a
+          > -->
+          <a href="http://localhost:4000">Contact</a>
           <ul class="dropdown contact">
             <li>
               Contact me through mobile on:
@@ -101,6 +107,9 @@
       let scrollLeft;
       let mylatesttap;
 
+      function GoToContactPage() {
+        window.location = "nodecontactform/views/layouts/main.handlebars";
+      }
       //Opening and closing nav bar
       function handleEnter() {
         this.classList.add("trigger-enter");
