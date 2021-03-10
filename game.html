@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Whack A Diglett!</title>
+    <link rel="stylesheet" href="style/game.css" />
+  </head>
+  <body>
+    <!-- prettier-ignore -->
+    <div class="top">
+    <div class="dropdownBackground">
+      <div class="arrow"></div>
+    </div>
+    <nav>
+      <a class="home" href="index.html">Home</a>
+      <div class="cool">
+        <a href="#">Information</a>
+        <div class="dropdown">
+          <div class="bio">
+            <p>
+              After doing a 3 week bootcamp with Code Nation, I decided to jump
+              into more depth learning front-end development, I completed the
+              Wesbos 30 day JavaScript challenge course which enabled me to
+              create many different applications solely using vanilla ES6
+              JavaScript. A game was one of the challenges that I particularly
+              enjoyed and I adapted the theme and added additional levels as
+              shown.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="title">Whack-a-Pokemon!</div>
+    </nav>
+    </div>
+
+    <div class="score">0</div>
+    <span>
+      <button>Start!</button>
+      <form>
+        <span>
+          <input type="radio" id="box" name="radio" value="easy" />
+          <label for="easy"> Easy</label>
+        </span>
+        <span>
+          <input type="radio" id="box" name="radio" value="medium" />
+          <label for="medium"> Medium</label>
+        </span>
+        <span>
+          <input type="radio" id="box" name="radio" value="hard" />
+          <label for="hard"> Hard</label>
+        </span>
+      </form>
+    </span>
+
+    <div class="game">
+      <div class="hole hole1">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole2">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole3">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole4">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole5">
+        <div class="mole"></div>
+      </div>
+      <div class="hole hole6">
+        <div class="mole"></div>
+      </div>
+    </div>
+
+    <script>
+      const holes = document.querySelectorAll(".hole");
+      const scoreBoard = document.querySelector(".score");
+      const moles = document.querySelectorAll(".mole");
+      const boxes = document.querySelectorAll('input[type="radio"]');
+      const button = document.querySelector("button");
+      let lower;
+      let upper;
+      // console.log(boxes[1].parentElement.offsetWidth);
+      function handleCheck() {
+        // console.logs(this.value);
+        if (this.value === "easy") {
+          lower = 600;
+          upper = 900;
+        } else if (this.value === "medium") {
+          lower = 300;
+          upper = 700;
+        } else {
+          lower = 300;
+          upper = 600;
+        }
+      }
+
+      let lastHole;
+      let timeUp = false;
+      // let lastScore;
+      // console.log(lastScore);
+      // scoresBoard.textContent = `last score: ${lastScore}`;
+      let lastScore;
+      let score = 0;
+
+      function randomTime(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
+      }
+
+      function randomHole(holes) {
+        const idx = Math.floor(Math.random() * holes.length);
+        const hole = holes[idx];
+        if (hole === lastHole) {
+          return randomHole(holes);
+        }
+        // console.log(hole);
+        lastHole = hole;
+        return hole;
+      }
+
+      function peep() {
+        const time = randomTime(lower, upper);
+        const hole = randomHole(holes);
+        hole.classList.add("up");
+        setTimeout(() => {
+          hole.classList.remove("up");
+          if (!timeUp) peep();
+        }, time);
+      }
+
+      function startGame() {
+        lastScore = JSON.parse(localStorage.getItem("score")) || "";
+        // location.reload();
+        console.log(lastScore);
+
+        score = 0;
+        timeUp = false;
+        peep();
+        setTimeout(() => (timeUp = true), 20000);
+      }
+
+      moles.forEach((mole) =>
+        mole.addEventListener("click", function (e, lastScore) {
+          // bonk(e, lastScore);
+          // lastScore = parseInt(lastScore);
+          console.log(lastScore);
+          if (!e.isTrusted) return;
+          console.log(e);
+          score++;
+          // lastScore.push(score);
+          this.parentNode.classList.remove("up");
+          scoreBoard.textContent = score;
+          localStorage.setItem("score", JSON.stringify(score));
+        })
+      );
+
+      boxes.forEach((box) => box.addEventListener("click", handleCheck));
+      boxes.forEach((box) => box.addEventListener("touch", handleCheck));
+      button.addEventListener("click", startGame);
+
+      /////
+
+      const trigger = document.querySelector(".cool");
+      const link = trigger.querySelector("a");
+      const background = document.querySelector(".dropdownBackground");
+      const text = document.querySelector(".bio");
+      const nav = document.querySelector(".top");
+
+      function handleEnter() {
+        trigger.classList.add("trigger-enter");
+        setTimeout(
+          () =>
+            trigger.classList.contains("trigger-enter") &&
+            trigger.classList.add("trigger-enter-active"),
+          150
+        );
+        background.classList.add("open");
+
+        // document.body.style.setProperty("opacity", "0.1");
+        const dropdown = trigger.querySelector(".dropdown");
+        const dropdownCoords = dropdown.getBoundingClientRect();
+        const navCoords = nav.getBoundingClientRect();
+
+        const coords = {
+          height: dropdownCoords.height,
+          width: dropdownCoords.width,
+          top: dropdownCoords.top - navCoords.top,
+          left: dropdownCoords.left - navCoords.left,
+        };
+        background.style.setProperty("width", `${coords.width}px`);
+        background.style.setProperty("height", `${coords.height}px`);
+
+        background.style.setProperty(
+          "transform",
+          document.body.offsetWidth > 1100
+            ? `translate(${coords.left - 50}px, ${coords.top - 10}px)`
+            : `translate(${coords.left}px, ${coords.top}px)`
+        );
+      }
+
+      function handleLeave() {
+        trigger.classList.remove("trigger-enter", "trigger-enter-active");
+        background.classList.remove("open");
+        // document.body.style.removeProperty("opacity");
+      }
+
+      link.addEventListener("mouseenter", handleEnter);
+      link.addEventListener("mouseleave", handleLeave);
+    </script>
+  </body>
+</html>
