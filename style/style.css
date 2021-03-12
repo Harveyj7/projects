@@ -144,7 +144,6 @@ nav ul {
   height: var(--height);
   padding: 10px;
   width: 100%;
-  /* border: 1px solid black; */
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
