@@ -90,6 +90,8 @@
     <script>
       const triggers = document.querySelectorAll(".cool > li");
       const background = document.querySelector(".dropdownBackground");
+      const text = document.querySelector(".bio");
+      const arrow = document.querySelector(".arrow");
       const nav = document.querySelector(".top");
       const items = document.querySelectorAll(".item");
       const slider = document.querySelector(".items");
@@ -122,7 +124,7 @@
           top: dropdownCoords.top - navCoords.top,
           left: dropdownCoords.left - navCoords.left,
         };
-
+        let displace;
         items.forEach((item) => {
           item.style.setProperty("opacity", "0.1");
         });
@@ -130,15 +132,27 @@
         // slider.style.setProperty("border", "black 2px solid");
         background.style.setProperty("width", `${coords.width}px`);
         background.style.setProperty("height", `${coords.height}px`);
+        if (
+          this.children[0].innerHTML === "About Me" &&
+          document.body.offsetWidth < 600
+        ) {
+          displace = 100;
+          arrow.style.setProperty("left", "30px");
+        } else {
+          displace = 0;
+        }
         background.style.setProperty(
           "transform",
-          `translate(${coords.left}px, ${coords.top}px)`
+          `translate(${coords.left + displace}px, ${coords.top}px)`
         );
+        text.style.setProperty("margin-left", `${2 * displace}px`);
       }
 
       function handleLeave() {
         this.classList.remove("trigger-enter", "trigger-enter-active");
         background.classList.remove("open");
+        text.style.removeProperty("margin-left");
+        arrow.style.removeProperty("left");
         // slider.style.removeProperty('border');
         slider.style.removeProperty("position");
         items.forEach((item) => {
@@ -167,6 +181,7 @@
       }
 
       //Eventlisteners
+
       triggers.forEach((trigger) =>
         trigger.addEventListener("mouseenter", handleEnter)
       );
