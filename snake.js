@@ -6,6 +6,7 @@ const ctx = canvas.getContext("2d");
 ctx.font = "30px Arial";
 const board_border = "black";
 const board_background = "white";
+let score = 0;
 let snake = [];
 let dx = 10;
 let dy = 0;
@@ -26,7 +27,9 @@ function main() {
     console.log(bool);
     if (has_game_ended()) {
       coords();
-      return ctx.fillText(`You lose, score of ${score}`, 10, 50);
+      ctx.fillText(`You lose, score of ${score}`, 10, 50);
+      score = 0;
+      return;
     } else {
       main();
     }
@@ -57,22 +60,18 @@ function moveSnake() {
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
   snake.unshift(head);
   const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
-  let score = parseFloat(document.getElementById("score").innerHTML);
+  // let score = parseFloat(document.getElementById("score").innerHTML);
   if (has_game_ended()) {
-    score = 0;
-    document.getElementById("score").innerHTML = score;
+    return score;
   } else {
     if (has_eaten_food) {
       score += 1;
-      // Display score on screen
-      document.getElementById("score").innerHTML = score;
-      // Generate new food location
       gen_food();
     } else {
-      // Remove the last part of snake body
       snake.pop();
     }
   }
+  document.getElementById("score").innerHTML = score;
 }
 function clearCanvas() {
   ctx.fillStyle = board_background;

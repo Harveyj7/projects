@@ -1,19 +1,59 @@
 @import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
 
-html {
-  box-sizing: border-box;
-  background-color: rgb(157, 187, 155);
-}
-
-*,
-*:before,
-*:after {
+* {
   font-family: "Bree Serif", serif;
   box-sizing: inherit;
   /* border: black 1px solid; */
 }
+body {
+  background-color: rgb(157, 187, 155);
+  /* border: solid green 1px; */
+  padding: 1% 5%;
+}
 canvas {
-  border: 1px solid black;
+  border: 5px solid rgba(0, 0, 0, 0.2);
   width: 95%;
-  height: 90%;
+  height: 80vh;
+}
+.top {
+  display: flex;
+  margin: 0 0 20px 0;
+}
+
+.home {
+  background: rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.title {
+  padding: 0 10% 0 32%;
+  font-size: 40px;
+}
+button {
+  padding: 0px 20px;
+  /* height: 60%; */
+  border-radius: 5px;
+  font-size: 20px;
+  margin: 10px;
+}
+form {
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  align-items: center;
+}
+
+#score {
+  position: absolute;
+  color: Green;
+  font-size: 30px;
+  font-weight: 900;
+  top: 18%;
+  left: 47%;
 }
