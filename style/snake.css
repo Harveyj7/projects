@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap");
+
+html {
+  box-sizing: border-box;
+  background-color: rgb(157, 187, 155);
+}
+
+*,
+*:before,
+*:after {
+  font-family: "Bree Serif", serif;
+  box-sizing: inherit;
+  /* border: black 1px solid; */
+}
+canvas {
+  border: 1px solid black;
+  width: 95%;
+  height: 90%;
+}
