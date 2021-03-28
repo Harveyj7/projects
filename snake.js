@@ -3,17 +3,31 @@ const canvas = document.querySelector("canvas");
 const boxes = document.querySelectorAll('input[type="radio"]');
 const button = document.querySelector("button");
 const ctx = canvas.getContext("2d");
-ctx.font = "30px Arial";
 const board_border = "black";
 const board_background = "white";
 let score = 0;
 let snake = [];
-let dx = 10;
 let dy = 0;
 let food_x;
 let food_y;
 let speed;
+let size;
 let bool = false;
+
+if (document.body.clientWidth < 600) {
+  canvas.width = document.body.clientWidth - 25;
+  canvas.height = document.body.clientHeight + 130;
+  size = 12.5;
+} else if (document.body.clientWidth < 1300) {
+  canvas.width = document.body.clientWidth - 80;
+  canvas.height = document.body.clientHeight + 300;
+  size = 25;
+} else {
+  canvas.width = document.body.clientWidth - 160;
+  canvas.height = document.body.clientHeight + 250;
+  size = 50;
+}
+let dx = size;
 button.addEventListener("click", () => main());
 
 coords();
@@ -27,7 +41,9 @@ function main() {
     console.log(bool);
     if (has_game_ended()) {
       coords();
-      ctx.fillText(`You lose, score of ${score}`, 10, 50);
+      ctx.fillStyle = "red";
+      ctx.font = `${size}px Arial`;
+      ctx.fillText(`You lose! Score of ${score}`, size * 10, size * 10);
       score = 0;
       return;
     } else {
@@ -41,20 +57,20 @@ function drawSnake() {
 }
 function coords() {
   snake = [
-    { x: 40, y: 70 },
-    { x: 30, y: 70 },
-    { x: 20, y: 70 },
-    { x: 10, y: 70 },
-    { x: 0, y: 70 },
+    { x: size * 4, y: 50 },
+    { x: size * 3, y: 50 },
+    { x: size * 2, y: 50 },
+    { x: size * 1, y: 50 },
+    { x: size * 0, y: 50 },
   ];
   return snake;
 }
 
 // Draw one snake part
 function drawSnakePart(snakePart) {
-  ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
+  ctx.fillRect(snakePart.x, snakePart.y, size, size);
   ctx.fillStyle = "lightblue";
-  ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+  ctx.strokeRect(snakePart.x, snakePart.y, size, size);
 }
 function moveSnake() {
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
@@ -84,9 +100,9 @@ function has_game_ended() {
     if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true;
   }
   const hitLeftWall = snake[0].x < 0;
-  const hitRightWall = snake[0].x > canvas.width - 10;
+  const hitRightWall = snake[0].x > canvas.width;
   const hitToptWall = snake[0].y < 0;
-  const hitBottomWall = snake[0].y > canvas.height - 10;
+  const hitBottomWall = snake[0].y > canvas.height;
   return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall;
 }
 
@@ -97,35 +113,35 @@ function change_direction(event) {
   const DOWN_KEY = 40;
 
   const keyPressed = event.keyCode;
-  const goingUp = dy === -10;
-  const goingDown = dy === 10;
-  const goingRight = dx === 10;
-  const goingLeft = dx === -10;
+  const goingUp = dy === -size;
+  const goingDown = dy === size;
+  const goingRight = dx === size;
+  const goingLeft = dx === -size;
 
   if (keyPressed === LEFT_KEY && !goingRight) {
-    dx = -10;
+    dx = -size;
     dy = 0;
   }
   if (keyPressed === UP_KEY && !goingDown) {
     dx = 0;
-    dy = -10;
+    dy = -size;
   }
   if (keyPressed === RIGHT_KEY && !goingLeft) {
-    dx = 10;
+    dx = size;
     dy = 0;
   }
   if (keyPressed === DOWN_KEY && !goingUp) {
     dx = 0;
-    dy = 10;
+    dy = size;
   }
 }
-
 function random_food(min, max) {
-  return Math.round((Math.random() * (max - min) + min) / 10) * 10;
+  console.log(Math.round((Math.random() * (max - min) + min) / size) * size);
+  return Math.round((Math.random() * (max - min) + min) / size) * size;
 }
 function gen_food() {
-  food_x = random_food(0, canvas.width - 10);
-  food_y = random_food(0, canvas.height - 10);
+  food_x = random_food(0, canvas.width - size);
+  food_y = random_food(0, canvas.height - size);
   snake.forEach(function has_snake_eaten_food(part) {
     const has_eaten = part.x == food_x && part.y == food_y;
     if (has_eaten) gen_food();
@@ -134,8 +150,8 @@ function gen_food() {
 function drawFood() {
   ctx.fillStyle = "lightgreen";
   ctx.strokestyle = "darkgreen";
-  ctx.fillRect(food_x, food_y, 10, 10);
-  ctx.strokeRect(food_x, food_y, 10, 10);
+  ctx.fillRect(food_x, food_y, size, size);
+  ctx.strokeRect(food_x, food_y, size, size);
 }
 
 function handleCheck() {

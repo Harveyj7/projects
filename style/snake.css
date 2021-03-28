@@ -12,12 +12,13 @@ body {
 }
 canvas {
   border: 5px solid rgba(0, 0, 0, 0.2);
-  width: 95%;
-  height: 80vh;
+  /* width: 100%; */
+  /* height: 60vh; */
 }
 .top {
   display: flex;
   margin: 0 0 20px 0;
+  justify-content: space-around;
 }
 
 .home {
@@ -56,4 +57,34 @@ form {
   font-weight: 900;
   top: 18%;
   left: 47%;
+}
+
+@media (max-width: 1300px) {
+  .title {
+    padding: 0 5% 0 20%;
+  }
+}
+@media (max-width: 1040px) {
+  .top {
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+  }
+  .title {
+    padding: 0 10% 0 12%;
+    font-size: 40px;
+  }
+  #score {
+    top: 14%;
+  }
+}
+@media (max-width: 600px) {
+  .title {
+    padding: 0 1% 0 1%;
+  }
+  body {
+    padding: 1% 2%;
+  }
+  #score {
+    top: 28%;
+  }
 }
