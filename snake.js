@@ -7,16 +7,19 @@ const board_border = "black";
 const board_background = "white";
 let score = 0;
 let snake = [];
-let dy = 0;
 let food_x;
 let food_y;
 let speed;
 let size;
+let goingDown;
+let goingUp;
+let goingLeft;
+let goingRight;
 let bool = false;
 
 if (document.body.clientWidth < 600) {
-  canvas.width = document.body.clientWidth - 25;
-  canvas.height = document.body.clientHeight + 130;
+  canvas.width = document.body.clientWidth - 20;
+  canvas.height = document.body.clientHeight + 150;
   size = 12.5;
 } else if (document.body.clientWidth < 1300) {
   canvas.width = document.body.clientWidth - 80;
@@ -27,6 +30,7 @@ if (document.body.clientWidth < 600) {
   canvas.height = document.body.clientHeight + 250;
   size = 50;
 }
+let dy = 0;
 let dx = size;
 button.addEventListener("click", () => main());
 
@@ -38,12 +42,16 @@ function main() {
     drawFood();
     moveSnake();
     let bool = has_game_ended();
-    console.log(bool);
+    // console.log(bool);
     if (has_game_ended()) {
       coords();
       ctx.fillStyle = "red";
       ctx.font = `${size}px Arial`;
       ctx.fillText(`You lose! Score of ${score}`, size * 10, size * 10);
+      goingUp = false;
+      goingDown = false;
+      goingRight = true;
+      goingLeft = false;
       score = 0;
       return;
     } else {
@@ -117,6 +125,7 @@ function change_direction(event) {
   const goingDown = dy === size;
   const goingRight = dx === size;
   const goingLeft = dx === -size;
+  console.log({ goingRight });
 
   if (keyPressed === LEFT_KEY && !goingRight) {
     dx = -size;
