@@ -139,11 +139,9 @@ function direction(x1, x2, y1, y2) {
   let cy = y2 - y1;
   console.log(cx, cy);
   if (cx > Math.abs(cy)) {
-    console.log("right");
     dx = size;
     dy = 0;
   } else if (cy > Math.abs(cx)) {
-    console.log("down");
     dx = 0;
     dy = size;
   } else if (-cx > Math.abs(cy)) {
