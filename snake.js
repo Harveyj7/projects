@@ -7,15 +7,9 @@ const board_border = "black";
 const board_background = "white";
 let score = 0;
 let snake = [];
-let food_x;
-let food_y;
-let speed;
-let size;
-let goingDown;
-let goingUp;
-let goingLeft;
-let goingRight;
 let bool = false;
+// prettier-ignore
+let food_x, food_y, speed, size, x1, y1,goingDown, goingUp, goingLeft, goingRight ;
 
 if (document.body.clientWidth < 600) {
   canvas.width = document.body.clientWidth - 20;
@@ -32,26 +26,33 @@ if (document.body.clientWidth < 600) {
 }
 let dy = 0;
 let dx = size;
-button.addEventListener("click", () => main());
-
+gen_food();
 coords();
+function coords() {
+  snake = [
+    { x: size * 4, y: 50 },
+    { x: size * 3, y: 50 },
+    { x: size * 2, y: 50 },
+    { x: size * 1, y: 50 },
+    { x: size * 0, y: 50 },
+  ];
+  return snake;
+}
 function main() {
   setTimeout(function onTick() {
     clearCanvas();
     drawSnake();
     drawFood();
     moveSnake();
-    let bool = has_game_ended();
+    // let bool = has_game_ended();
     // console.log(bool);
     if (has_game_ended()) {
       coords();
       ctx.fillStyle = "red";
       ctx.font = `${size}px Arial`;
       ctx.fillText(`You lose! Score of ${score}`, size * 10, size * 10);
-      goingUp = false;
-      goingDown = false;
-      goingRight = true;
-      goingLeft = false;
+      dy = 0;
+      dx = size;
       score = 0;
       return;
     } else {
@@ -62,16 +63,6 @@ function main() {
 }
 function drawSnake() {
   snake.forEach(drawSnakePart);
-}
-function coords() {
-  snake = [
-    { x: size * 4, y: 50 },
-    { x: size * 3, y: 50 },
-    { x: size * 2, y: 50 },
-    { x: size * 1, y: 50 },
-    { x: size * 0, y: 50 },
-  ];
-  return snake;
 }
 
 // Draw one snake part
@@ -125,7 +116,6 @@ function change_direction(event) {
   const goingDown = dy === size;
   const goingRight = dx === size;
   const goingLeft = dx === -size;
-  console.log({ goingRight });
 
   if (keyPressed === LEFT_KEY && !goingRight) {
     dx = -size;
@@ -144,8 +134,28 @@ function change_direction(event) {
     dy = size;
   }
 }
+function direction(x1, x2, y1, y2) {
+  let cx = x2 - x1;
+  let cy = y2 - y1;
+  console.log(cx, cy);
+  if (cx > Math.abs(cy)) {
+    console.log("right");
+    dx = size;
+    dy = 0;
+  } else if (cy > Math.abs(cx)) {
+    console.log("down");
+    dx = 0;
+    dy = size;
+  } else if (-cx > Math.abs(cy)) {
+    dx = -size;
+    dy = 0;
+  } else {
+    dx = 0;
+    dy = -size;
+  }
+}
 function random_food(min, max) {
-  console.log(Math.round((Math.random() * (max - min) + min) / size) * size);
+  // console.log(Math.round((Math.random() * (max - min) + min) / size) * size);
   return Math.round((Math.random() * (max - min) + min) / size) * size;
 }
 function gen_food() {
@@ -172,6 +182,18 @@ function handleCheck() {
     speed = 40;
   }
 }
-gen_food();
+button.addEventListener("click", () => main());
 boxes.forEach((box) => box.addEventListener("click", handleCheck));
 document.addEventListener("keydown", change_direction);
+
+document.addEventListener("touchstart", (e) => {
+  x1 = e.touches[0].pageX;
+  y1 = e.touches[0].pageY;
+  // console.log(x1, y1);
+});
+document.addEventListener("touchend", (e) => {
+  x2 = e.changedTouches[0].pageX;
+  y2 = e.changedTouches[0].pageY;
+  // console.log(x2, y2);
+  direction(x1, x2, y1, y2);
+});
