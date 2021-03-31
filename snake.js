@@ -10,19 +10,21 @@ let snake = [];
 let bool = false;
 // prettier-ignore
 let food_x, food_y, speed, size, x1, y1,goingDown, goingUp, goingLeft, goingRight ;
-
 if (document.body.clientWidth < 600) {
-  canvas.width = document.body.clientWidth - 20;
-  canvas.height = document.body.clientHeight + 150;
   size = 12.5;
-} else if (document.body.clientWidth < 1300) {
-  canvas.width = document.body.clientWidth - 80;
-  canvas.height = document.body.clientHeight + 300;
+  canvas.width = (Math.floor(window.innerWidth / size) - 3) * size - 1; //949
+  canvas.height = (Math.floor(window.innerHeight / size) - 15) * size - 1; //499
+  ctx.font = `${window.innerWidth / 15}px Arial`;
+} else if (document.body.clientWidth < 1000) {
   size = 25;
+  canvas.width = (Math.floor(window.innerWidth / size) - 3) * size - 1; //674
+  canvas.height = (Math.floor(window.innerHeight / size) - 5) * size - 1; //874
+  ctx.font = `${window.innerWidth / 20}px Arial`;
 } else {
-  canvas.width = document.body.clientWidth - 160;
-  canvas.height = document.body.clientHeight + 250;
   size = 50;
+  canvas.width = (Math.floor(window.innerWidth / size) - 3) * size - 1; //949
+  canvas.height = (Math.floor(window.innerHeight / size) - 3) * size - 1; //499
+  ctx.font = `${window.innerWidth / 30}px Arial`;
 }
 let dy = 0;
 let dx = size;
@@ -38,6 +40,7 @@ function coords() {
   ];
   return snake;
 }
+console.log(window.innerWidth / 30);
 function main() {
   setTimeout(function onTick() {
     clearCanvas();
@@ -49,8 +52,11 @@ function main() {
     if (has_game_ended()) {
       coords();
       ctx.fillStyle = "red";
-      ctx.font = `${size}px Arial`;
-      ctx.fillText(`You lose! Score of ${score}`, size * 10, size * 10);
+      ctx.fillText(
+        `You lose! Score of ${score}`,
+        window.innerWidth / 4,
+        window.innerHeight / 4
+      );
       dy = 0;
       dx = size;
       score = 0;
@@ -137,21 +143,37 @@ function change_direction(event) {
 function direction(x1, x2, y1, y2) {
   let cx = x2 - x1;
   let cy = y2 - y1;
+
+  const goingUp = dy === -size;
+  const goingDown = dy === size;
+  const goingRight = dx === size;
+  const goingLeft = dx === -size;
   console.log(cx, cy);
-  if (cx > Math.abs(cy)) {
+  if (cx > Math.abs(cy) && !goingLeft) {
+    console.log("right");
     dx = size;
     dy = 0;
-  } else if (cy > Math.abs(cx)) {
+  }
+  if (cy > Math.abs(cx) && !goingUp) {
+    console.log("down");
     dx = 0;
     dy = size;
-  } else if (-cx > Math.abs(cy)) {
+    // window.onbeforeunload = function () {
+    //   return "no";
+    // };
+  }
+  if (-cx > Math.abs(cy) && !goingRight) {
+    console.log("left");
     dx = -size;
     dy = 0;
-  } else {
+  }
+  if (-cy > Math.abs(cx) && !goingDown) {
+    console.log("up");
     dx = 0;
     dy = -size;
   }
 }
+
 function random_food(min, max) {
   // console.log(Math.round((Math.random() * (max - min) + min) / size) * size);
   return Math.round((Math.random() * (max - min) + min) / size) * size;
