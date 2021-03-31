@@ -47,8 +47,6 @@ function main() {
     drawSnake();
     drawFood();
     moveSnake();
-    // let bool = has_game_ended();
-    // console.log(bool);
     if (has_game_ended()) {
       coords();
       ctx.fillStyle = "red";
