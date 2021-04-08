@@ -27,7 +27,6 @@ body {
 
 nav {
   position: relative;
-  /* perspective: 600px; */
 }
 .nav:hover {
   background-color: rgb(198, 241, 195);
