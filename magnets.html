@@ -22,7 +22,7 @@
         Using Finite Element Magnetics Modelling (FEMM4.2) with an iteration
         program run through Lua scripts, the forces between two N42 grade ring
         magnets with OD of 46mm and ID of 36mm were analyzed at thicknesses of 0
-        to 10mm.
+        to 10mm. <b>(Click for full size plot)</b>
       </p>
 
       <div class="femm">
@@ -35,8 +35,8 @@
         internal radius from r=23mm to r=0mm.
         <br /><br />
         The results obtained show that decreasing the inner radius of the ring
-        magnet increases the attractive force up to 16mm (ID32) (EDIT IMAGE
-        XLABEL), where its slowly drops to 95N when it becomes a disk magnet.
+        magnet increases the attractive force up to 16mm (ID32), where its
+        slowly drops to 95N when it becomes a disk magnet.
       </p>
 
       <div class="femm">
@@ -60,15 +60,16 @@
       const images = document.querySelectorAll("img");
 
       function zoom() {
-        this.style.transition = "width 0.5s ease 0s";
-        this.style.width = "100%";
-      }
-      function zoomOut() {
-        this.style.width = "40%";
+        if (this.style.width !== "100%") {
+          this.style.transition = "width 0.5s ease 0s";
+          this.style.width = "100%";
+        } else {
+          this.style.width = "40%";
+        }
       }
 
-      images.forEach((image) => image.addEventListener("mouseover", zoom));
-      images.forEach((image) => image.addEventListener("mouseleave", zoomOut));
+      images.forEach((image) => image.addEventListener("click", zoom));
+      // images.forEach((image) => image.addEventListener("mouseup", zoomOut));
     </script>
   </body>
 </html>

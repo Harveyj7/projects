@@ -110,7 +110,11 @@ nav ul {
   background: white;
   transform: translateY(-50%) rotate(45deg);
 }
-
+footer.center {
+  text-align: center;
+  position: sticky;
+  bottom: 0px;
+}
 .bio {
   min-width: 500px;
   display: flex;
@@ -225,6 +229,12 @@ nav ul {
   right: 100px;
   bottom: 40px;
 }
+.snake {
+  width: 80%;
+  position: absolute;
+  right: 60px;
+  bottom: 70px;
+}
 
 .item:nth-child(even) {
   transform: scaleX(1.31) rotateY(40deg);
@@ -261,39 +271,36 @@ nav ul {
     font-size: 20px;
   }
   .glider {
-    position: absolute;
     right: 40px;
     bottom: 20px;
   }
   .matlab {
-    position: absolute;
     right: 90px;
     bottom: 40px;
   }
   .obstacles {
-    position: absolute;
     right: 20px;
     bottom: 20px;
   }
   .magnets {
-    position: absolute;
     right: 10px;
     bottom: 20px;
   }
   .tableau {
     width: 94%;
-    position: absolute;
     right: 10px;
     bottom: 40px;
   }
   .python {
-    position: absolute;
     right: 70px;
-    bottom: 40px;
+    bottom: 20px;
   }
   .game {
-    position: absolute;
     right: 70px;
-    bottom: 40px;
+    bottom: 30px;
+  }
+  .snake {
+    right: 40px;
+    bottom: 50px;
   }
 }
