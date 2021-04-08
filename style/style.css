@@ -122,9 +122,9 @@ footer.center {
   line-height: 1.7;
 }
 .social {
-  min-width: 150px;
+  min-width: 120px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-direction: row;
 }
 
@@ -252,6 +252,9 @@ footer.center {
     padding: 10px 5px;
   }
 
+  .social {
+    margin: -10px;
+  }
   .bio {
     min-width: 250px;
   }

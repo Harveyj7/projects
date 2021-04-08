@@ -137,7 +137,7 @@ body::-webkit-scrollbar {
   }
   .dropdown {
     padding: 0px;
-    border: green 2px solid;
+    /* border: green 2px solid; */
     transform: translateY(200px);
   }
   .dropdownBackground {
