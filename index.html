@@ -7,13 +7,13 @@
     <title>Harvey Projects</title>
   </head>
   <body>
-    <div class="title">Harvey Jensen- My Projects</div>
-    <nav class="top">
+    <h1 class="title">Harvey Jensen- My Projects</h1>
+    <nav>
       <div class="dropdownBackground">
         <span class="arrow"></span>
       </div>
 
-      <ul class="cool">
+      <ul class="ul">
         <li>
           <a href="#">About Me</a>
           <div class="dropdown dropdown1">
@@ -51,52 +51,63 @@
                 <img src="images\iglogo.png" width="50px"/></a>
               <a href="https://www.linkedin.com/in/harvey-j-51650388/">
                 <img src="images\linkedin.png" width="50px"/></a>
-              <!-- <a href="https://www.facebook.com/harvey.jensen">
-                <img src="images\fblogo.png" width="50px"/></a> -->
             </div>
           </div>
         </li>
       </ul>
     </nav>
     <!-- prettier-ignore -->
-    <div class="items">
-      <div class="item">
-        Website project 1
-        <a href="https://harveyj7.github.io/IMA/index.html"><img class="website" src="images\imalogo.jpg" /></a>
-      </div>
-      <div class="item">
-        JavaScript game 1
-        <a href="game.html"><img class="game" src="images\diglett.png" /></a>
-      </div>
-      <div class="item">
-        JavaScript game 2
-        <a href="snake.html"><img class="snake" src="images\snake.png" /></a>
-      </div>
-      <div class="item">
-        Tableau application project
-        <a href="tableau.html"><img class="tableau" src="images\mapviz.png" /></a>
-      </div>
-      <div class="item">
-        Renishaw Magnet FEA/ FEMM
-        <a href="magnets.html"><img class="magnets" src="images\magnets.png" /></a>
-      </div>
-      <div class="item">
-        Final Year project
-        <a href="fyp.html"><img class="glider" src="images\Glider.png" /></a>
-      </div>
-      
-      <div class="item">
-        Group Business Design Project
-        <a href="gbdp.html"><img class="obstacles" src="images\OTD.png" /></a>
-      </div>      
-    </div>
+    <ul class="items">
+      <li class="item">
+        <span>Website project 1</span>
+        <div class="sliderimg big">
+          <a href="https://harveyj7.github.io/IMA/index.html"><img  src="images\imalogo.jpg" /></a>
+        </div>
+      </li>
+      <li class="item">
+        <span>JavaScript game 1</span>
+        <div class="sliderimg big">
+          <a href="game.html"><img src="images\diglett.png" /></a>
+        </div>
+      </li>
+      <li class="item">
+        <span>JavaScript game 2</span>
+        <div class="sliderimg">
+          <a href="snake.html"><img  src="images\snake.png" /></a>
+        </div>
+      </li>
+      <li class="item">
+        <span>Tableau application project</span>
+        <div class="sliderimg">
+          <a href="tableau.html"><img  src="images\mapviz.png" /></a>
+        </div>
+      </li>
+      <li class="item">
+        <span>Renishaw Magnet FEA/ FEMM</span>
+        <div class="sliderimg">
+          <a href="magnets.html"><img  src="images\magnets.png" /></a>
+        </div>
+      </li>
+      <li class="item">
+        <span>Final Year project</span>
+        <div class="sliderimg big">
+          <a href="fyp.html"><img  src="images\Glider.png" /></a>
+        </div>
+      </li>      
+      <li class="item">
+        <span>Group Business Design Project</span>
+        <div class="sliderimg">
+          <a href="gbdp.html"><img  src="images\OTD.png" /></a>
+        </div>
+      </li>      
+    </ul>
     <footer class="center">Designed and Developed by Harvey Jensen</footer>
     <script>
-      const triggers = document.querySelectorAll(".cool > li");
+      const triggers = document.querySelectorAll(".ul > li");
       const background = document.querySelector(".dropdownBackground");
       const text = document.querySelector(".bio");
       const arrow = document.querySelector(".arrow");
-      const nav = document.querySelector(".top");
+      const nav = document.querySelector("nav");
       const items = document.querySelectorAll(".item");
       const slider = document.querySelector(".items");
       let isDown = false;
@@ -228,8 +239,10 @@
           [x2, y2] = [e.screenX, e.screenY];
           console.log(e.type);
         }
+        console.log(this);
         if (x1 === x2 && y1 === y2) {
-          location = this.children[0].href;
+          // console.log(this.children);
+          location = this.children[1].children[0].href;
         }
       }
       items.forEach((item) => item.addEventListener("touchstart", doubletap));
