@@ -67,7 +67,6 @@ td {
 }
 th {
   border: rgba(0, 128, 0, 0.603) solid 3px;
-  /* width: 50%; */
 }
 
 @media (max-width: 1000px) {
@@ -79,7 +78,6 @@ th {
   }
   .text {
     padding: 1% 0.5%;
-    /* border: solid green 1px; */
     font-size: 18px;
   }
 }

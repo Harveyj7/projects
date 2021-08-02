@@ -11,13 +11,11 @@ function init(xAxis, yAxis) {
   let columnSize = 50;
   let rowSize = 50;
   let margin = 0;
-// console.log(sections)
 
   canvas = document.getElementById("canvas");
   context = canvas.getContext("2d");
   context.fillStyle = "white";
   context.fillRect(50, 50, canvas.width, canvas.height);
-  // context.background = "white";
   context.font = "20 pt Verdana";
   context.fontColor = "black";
 
