@@ -3,6 +3,7 @@
 * {
   font-family: "Bree Serif", serif;
   /* border: solid black 1px; */
+  margin: 0;
 }
 
 body {
@@ -22,15 +23,18 @@ nav {
   color: black;
   font-size: 20px;
   text-align: center;
-  flex: 1;
+  /* flex: 1; */
   padding: 10px;
   border-radius: 5px;
 }
 .title {
-  flex: 6;
-  padding: 0 32%;
-  font-size: 40px;
+  /* flex: 6; */
+  text-align: center;
+  margin-right: 40px;
+  flex-grow: 1;
+  font-size: 3vw;
 }
+
 .fetch {
   display: block;
   margin-left: auto;
@@ -46,7 +50,7 @@ nav {
 .data {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .text {
@@ -54,36 +58,57 @@ nav {
   padding: 2% 15%;
 }
 
-table {
+.tb {
   border: black solid 2px;
-  width: 15vw;
+  width: 16vw;
 }
 tr {
   border: black solid 1px;
 }
 td {
-  border: white solid 1px;
+  border: grey solid 1px;
   width: 50%;
 }
-th {
-  border: rgba(0, 128, 0, 0.603) solid 3px;
+.tablehead {
+  text-align: center;
+  font-weight: 900;
+}
+.table {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+.doublecell {
+  display: flex;
+  flex-direction: column;
+}
+.cell {
+  border: white solid 1px;
+  width: 80px;
 }
 
 @media (max-width: 1000px) {
   .title {
-    padding: 0 5%;
+    padding: 0 20%;
+    font-size: 30px;
   }
-  body {
-    padding: 0 3%;
+  .data {
+    flex-direction: column-reverse;
+    justify-content: space-between;
   }
-  .text {
-    padding: 1% 0.5%;
-    font-size: 18px;
+  .canvas {
+    width: 100%;
   }
 }
 
 @media (max-width: 550px) {
-  .text {
-    font-size: 15px;
+  .title {
+    padding: 0 4%;
+    font-size: 30px;
+    margin-right: 0px;
+  }
+  body {
+    padding: 1%;
   }
 }

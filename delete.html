@@ -167,3 +167,70 @@
     </script>
   </body>
 </html>
+
+
+// import React from "react";
+
+// export class Clock extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { date: new Date() };
+//   }
+//   render() {
+//     return (
+//       <div>
+//         {this.props.isPrecise
+//           ? this.state.date.toISOString()
+//           : this.state.date.toLocaleTimeString()}
+//       </div>
+//     );
+//   }
+//   componentDidMount() {
+//     const oneSecond = 1000;
+//     this.intervalID = setInterval(() => {
+//       this.setState({ date: new Date() });
+//     }, oneSecond);
+//   }
+//   componentWillUnmount() {
+//     clearInterval(this.intervalID);
+//   }
+//   componentDidUpdate(prevProps) {
+//     if (this.props.isPrecise === prevProps.isPrecise) {
+//       return;
+//     }
+//     clearInterval(this.intervalID);
+//     let delay = this.props.isPrecise ? 100 : 1000;
+//     this.intervalID = setInterval(() => {
+//       this.setState({ date: new Date() });
+//     }, delay);
+//   }
+//   startInterval() {
+//     const oneSecond = 1000;
+//     this.intervalID = setInterval(() => {
+//       this.setState({ date: new Date() });
+//     }, oneSecond);
+//   }
+// }
+
+
+function populateHorizontalTable(d, i, tr, tr2) {
+  const td = document.createElement("td");
+  // const div = document.createElement("div");
+  td.classList.add("media");
+  // tr.classList.add("media");
+  tbody.appendChild(tr);
+  tr.appendChild(td);
+  td.innerHTML = d.date;
+  const td2 = document.createElement("td");
+  td2.classList.add("media");
+  tbody.appendChild(tr2);
+  tr2.appendChild(td2);
+  td2.innerHTML = d.newCases;
+  if (i < 7) {
+    td.style.display = "table-cell";
+    td2.style.display = "table-cell";
+  } else {
+    td.style.display = "none";
+    td2.style.display = "none";
+  }
+}
