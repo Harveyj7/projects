@@ -1,0 +1,454 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Learning App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        .button-container {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .btn {
+            background-color: #008060;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 1;
+            margin: 0 5px;  /* Add small margin between buttons */
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+            .button-group .btn {
+                flex: 1;
+                margin: 0;
+            }
+
+        .vocab-table {
+            width: 45%; 
+            margin-bottom: 30px;
+            overflow-y: auto;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 2%;
+        }
+
+        .vocab-table:last-child {
+            margin-right: 0;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            height: 40px;
+            min-width: 150px;
+        }
+
+        tbody {
+            display: block;
+            overflow-y: auto;
+        }
+
+        tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            margin: 100px auto;
+            border-radius: 5px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            color: red;
+        }
+
+        .word-display {
+            background-color: #ffff9e;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="btn" onclick="openAddWordModal()">Add word</button>
+        <button class="btn" onclick="openTestWordsModal()">Test words</button>
+        <button class="btn" onclick="importCSV()">Import CSV</button>
+        <button class="btn" onclick="exportCSV()">Export CSV</button>
+        <button class="btn" onclick="clearVocabulary()">Clear All</button>
+        <input type="file" id="fileInput" accept=".csv" style="display: none;" onchange="handleFileSelect(event)">
+    </div>
+
+    <div class="vocab-table">
+        <h2>Verbs:</h2>
+        <table id="verbsTable">
+            <tbody>
+            </tbody>
+        </table>
+    </div> 
+
+    <div class="vocab-table">
+        <h2>Vocabulary:</h2>
+        <table id="generalTable">
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Word Modal -->
+    <div id="addWordModal" class="modal">
+        <div class="modal-content">
+            <h2>Add new Word</h2>
+            <input type="text" class="input-field" id="italianWord" placeholder="Italian">
+            <input type="text" class="input-field" id="englishWord" placeholder="English">
+            <div class="button-group">
+                <button class="btn" onclick="addWord('verbs')">Add Verb</button>
+                <button class="btn" onclick="addWord('general')">Add Vocab</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Words Modal -->
+    <div id="testWordsModal" class="modal">
+        <div class="modal-content">
+            <h2>Test Words</h2>
+            <div class="word-display" id="testWord">Select a category to start testing</div>
+            <div class="button-group">
+                <button class="btn" onclick="startTest('verbs')">Test Verbs</button>
+                <button class="btn" onclick="startTest('general')">Test Vocab</button>
+            </div>
+            <input type="text" class="input-field" id="answer" placeholder="Input answer">
+            <button class="btn" onclick="checkAnswer()" style="width: 100%; margin-top: 10px;">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        let currentTestCategory = null;
+        let correctlyAnsweredWords = new Set();
+
+
+        function openTestWordsModal() {
+            document.getElementById('testWordsModal').style.display = 'block';
+            document.getElementById('testWord').textContent = 'Select a category to start testing';
+            document.getElementById('answer').value = '';
+        }
+
+        function startTest(category) {
+            currentTestCategory = category;
+            correctlyAnsweredWords.clear();
+            displayRandomWord();
+        }
+
+
+        function displayRandomWord() {
+            if (!currentTestCategory) return;
+
+            const words = vocabulary[currentTestCategory].filter(word => 
+                word.italian !== 'VERBS:' && 
+                word.italian !== 'VOCAB:' &&
+                !correctlyAnsweredWords.has(word.italian)
+            );
+
+
+            if (words.length > 0) {
+                const randomWord = words[Math.floor(Math.random() * words.length)];
+                document.getElementById('testWord').textContent = randomWord.italian;
+                document.getElementById('testWord').dataset.answer = randomWord.english;
+            } else {
+                if (correctlyAnsweredWords.size > 0) {
+                // All words have been answered correctly
+                alert('Congratulations! You have completed all words in this category!');
+                document.getElementById('testWordsModal').style.display = 'none';
+            } else {
+                document.getElementById('testWord').textContent = `No ${currentTestCategory} available for testing`;
+            }           
+         }
+        }
+
+        // Initialize vocabulary from localStorage or create new
+        let vocabulary = JSON.parse(localStorage.getItem('vocabulary')) || {
+            verbs: [],
+            general: []
+        };
+
+        window.addEventListener('load', () => {
+        // Initial table update blazor
+        //document.addEventListener('DOMContentLoaded', () => {
+            updateTable('verbs');
+            updateTable('general');
+        });
+
+        function openAddWordModal() {
+            document.getElementById('addWordModal').style.display = 'block';
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function (event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+            }
+        }
+
+
+        async function addWord(category) {
+            const italian = document.getElementById('italianWord').value.trim();
+            const english = document.getElementById('englishWord').value.trim();
+
+            if (italian && english) {
+                // Validate verb endings if adding to verbs category
+                // if (category === 'verbs' && !/[aei]re$/.test(italian)
+                // ) {
+                //     alert('Verbs must end with "are", "ere", or "ire"');
+                //     return;
+                // }
+
+                // Check for duplicates in both tables
+                const isDuplicate = ['verbs', 'general'].some(cat =>
+                    vocabulary[cat].some(
+                        word => word.italian.toLowerCase() === italian.toLowerCase() ||
+                            word.english.toLowerCase() === english.toLowerCase()
+                    )
+                );
+
+                if (isDuplicate) {
+                    alert('This word already exists in the vocabulary!');
+                    return;
+                }
+
+                // Add new word to the appropriate category
+                const newWord = { italian, english };
+                
+                if (category === 'verbs') {
+                    // If verbs array is empty, add header first
+                    if (vocabulary.verbs.length === 0) {
+                        vocabulary.verbs.push({ italian: 'VERBS:', english: '' });
+                    }
+                    // Insert new word after the header
+                    vocabulary.verbs.splice(1, 0, newWord);
+                } else {
+                    // If general array is empty, add header first
+                    if (vocabulary.general.length === 0) {
+                        vocabulary.general.push({ italian: 'VOCAB:', english: '' });
+                    }
+                    // Insert new word after the header
+                    vocabulary.general.splice(1, 0, newWord);
+                }
+
+                updateTable(category);
+
+                // Clear inputs and close modal
+                document.getElementById('italianWord').value = '';
+                document.getElementById('englishWord').value = '';
+                document.getElementById('addWordModal').style.display = 'none';
+            }
+        }
+
+        function updateTable(category) {
+            const table = document.getElementById(category + 'Table');
+            const words = vocabulary[category];
+            const tbody = table.getElementsByTagName('tbody')[0];
+
+            // Clear existing rows
+            tbody.innerHTML = '';
+
+            // Add rows for each word
+            words.forEach(word => {
+                const row = tbody.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                cell1.textContent = word.italian;
+                cell2.textContent = word.english;
+            });
+
+            // Update localStorage
+            localStorage.setItem('vocabulary', JSON.stringify(vocabulary));
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer').value.toLowerCase();
+            const correctAnswer = document.getElementById('testWord').dataset.answer.toLowerCase();
+            const currentWord = document.getElementById('testWord').textContent;
+
+            if (userAnswer === correctAnswer) {
+                alert('Correct!');
+                correctlyAnsweredWords.add(currentWord);
+            } else {
+                alert(`Incorrect. The correct answer is: ${correctAnswer}`);
+            }
+
+            // Clear input and display new word
+            document.getElementById('answer').value = '';
+            displayRandomWord();
+        }
+
+        async function importCSV() {
+            document.getElementById('fileInput').click();
+        }
+
+        async function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                const lines = text.split('\n');
+                
+                let hasError = false;
+                let currentCategory = 'general'; // Default category
+                
+                lines.forEach((line, index) => {
+                    const trimmedLine = line.trim();
+                    if (!trimmedLine) return; // Skip empty lines
+                    
+                    // Check for category headers
+                    if (trimmedLine.toUpperCase().includes('VERBS:')) {
+                        currentCategory = 'verbs';
+                        return;
+                    } else if (trimmedLine.toUpperCase().includes('VOCAB:')) {
+                        currentCategory = 'general';
+                        return;
+                    }
+                    
+                    // Process word pairs
+                    const [italian, english] = trimmedLine.split(',').map(field => field?.trim() || '');
+                    if (!italian || !english) {
+                        return; // Skip invalid lines silently
+                    }
+                    
+                    const isDuplicate = ['verbs', 'general'].some(cat =>
+                        vocabulary[cat].some(
+                            existingWord => existingWord.italian.toLowerCase() === italian.toLowerCase() ||
+                                existingWord.english.toLowerCase() === english.toLowerCase()
+                        )
+                    );
+
+                    console.log(trimmedLine);
+                    if (!isDuplicate) {
+                        vocabulary[currentCategory].push({ italian, english });
+                    }
+                });
+
+                if (!hasError) {
+                    updateTable('verbs');
+                    updateTable('general');
+                    alert('Import completed successfully!');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        async function exportCSV() {
+            let csvContent = '';
+            
+            // Add verbs section if there are any verbs
+            if (vocabulary.verbs.length > 0) {
+                csvContent += 'VERBS:\n';
+                vocabulary.verbs.forEach(word => {
+                    if (word.italian !== 'VERBS:') { // Skip the header row
+                        csvContent += `${word.italian},${word.english}\n`;
+                    }
+                });
+            }
+            
+            // Add general vocabulary section if there are any words
+            if (vocabulary.general.length > 0) {
+                csvContent += 'VOCAB:\n';
+                vocabulary.general.forEach(word => {
+                    if (word.italian !== 'VOCAB:') { // Skip the header row
+                        csvContent += `${word.italian},${word.english}\n`;
+                    }
+                });
+            }
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+
+            try {
+                const handle = await window.showSaveFilePicker({
+                    suggestedName: 'vocabulary.csv',
+                    types: [{
+                        description: 'CSV Files',
+                        accept: { 'text/csv': ['.csv'] },
+                    }],
+                });
+
+                const writable = await handle.createWritable();
+                await writable.write(blob);
+                await writable.close();
+                alert('Export completed successfully!');
+            } catch (err) {
+                console.error('Error exporting CSV:', err);
+                alert('Error exporting to CSV file. Please try again.');
+            }
+        }
+
+        function clearVocabulary() {
+            if (confirm('Are you sure you want to clear all vocabulary? This cannot be undone.')) {
+                vocabulary = {
+                    verbs: [],
+                    general: []
+                };
+                
+                localStorage.removeItem('vocabulary');
+                
+                updateTable('verbs');
+                updateTable('general');
+            }
+        }
+    </script>
+</body>
+
