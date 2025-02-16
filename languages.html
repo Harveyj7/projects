@@ -124,6 +124,13 @@
     </style>
 </head>
 <body>
+    <button class="btn" style="position: absolute; top: 20px; left: 20px;" onclick="window.location.href='index.html'">
+        ← Back
+    </button>
+    <a href="italian.csv" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 5px;">
+        <img src="images/language_icon.png" width="20px" alt="Example file"/>
+        Example CSV File
+    </a><br>
     <div class="button-container">
         <button class="btn" onclick="openAddWordModal()">Add word</button>
         <button class="btn" onclick="openTestWordsModal()">Test words</button>
@@ -304,6 +311,17 @@
 
             // Clear existing rows
             tbody.innerHTML = '';
+
+            // Add header row if no words exist
+            if (words.length === 0) {
+                const headerRow = tbody.insertRow();
+                const italianCell = headerRow.insertCell(0);
+                const englishCell = headerRow.insertCell(1);
+                italianCell.textContent = 'Other language';
+                englishCell.textContent = 'English';
+                italianCell.style.color = '#888';
+                englishCell.style.color = '#888';
+            }
 
             // Add rows for each word
             words.forEach(word => {
