@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Bree Serif", serif;
+    border: #ddd solid 1px;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 60px;
+    margin-top: 10px;
 }
 
 .btn {
@@ -32,6 +33,14 @@ body {
     text-decoration: none;
     text-align: center;
     font-size: 20px;
+}
+
+.example {
+    text-decoration: none; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    /* gap: 5px; */
 }
 
 .button-group {

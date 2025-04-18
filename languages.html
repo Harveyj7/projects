@@ -5,20 +5,18 @@
     <title>Vocabulary Learning App</title>
 </head>
 <body>
-    <button class="btn" style="position: absolute; top: 20px; left: 20px;" onclick="window.location.href='index.html'">
-        ← Back
-    </button>
     <!--<a href="italian.csv" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 5px;">
         <img src="images/language_icon.png" width="20px" alt="Example file"/>
         Example CSV File download
     </a>-->
-    <a href="data:text/csv;charset=utf-8,VERBS:%0Aparlo,speak%0Aallontarsi,to%20move%20away%0Afaccio,do%0Amangio,eat%0Avedo,see%0Avoglio,want%0Aio%20ho,i%20have%0Apiache,like%0Aho%20bisogno,i%20need%0Avado,go%0AVOCAB:%0ASorella,Sister%0AFratello,Brother%0APiacere,Pleasure%0ADieci,ten%0AScontrino,Recipt%0APiccolo,Small%0ASpeccio,Mirror%0ANero,Black%0AZaino,Backpack%0AMaglione,Sweater" download="italian.csv" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 5px;">
-    <img src="images/language_icon.png" width="20px" alt="Example file"/>
-    Example CSV File
-    </a><br>
-    
+    <a class="example" href="data:text/csv;
+    charset=utf-8,VERBS:%0Aparlo,speak%0Aallontarsi,to%20move%20away%0Afaccio,do%0Amangio,eat%0Avedo,see%0Avoglio,want%0Aio%20ho,i%20have%0Apiache,like%0Aho%20bisogno,i%20need%0Avado,go%0AVOCAB:%0ASorella,Sister%0AFratello,Brother%0APiacere,Pleasure%0ADieci,ten%0AScontrino,Recipt%0APiccolo,Small%0ASpeccio,Mirror%0ANero,Black%0AZaino,Backpack%0AMaglione,Sweater" download="italian.csv">
+        <img src="images/language_icon.png" width="20px" alt="Example file"/>
+        Example CSV File
+    </a>    
     
     <div class="button-container">
+        <button class="btn" onclick="window.location.href='index.html'">Home</button>
         <button class="btn" onclick="openAddWordModal()">Add word</button>
         <button class="btn" onclick="openTestWordsModal()">Test words</button>
         <button class="btn" onclick="importCSV()">Import CSV</button>
