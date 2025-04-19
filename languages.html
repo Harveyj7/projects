@@ -164,7 +164,7 @@
                 // Add new word to the appropriate category
                 const newWord = { italian, english };
                 
-                if (category === 'verbs') {
+                if (category === 'VERBS') {
                     // If verbs array is empty, add header first
                     if (vocabulary.verbs.length === 0) {
                         vocabulary.verbs.push({ italian: 'VERBS:', english: '' });
@@ -202,19 +202,29 @@
                 const headerRow = tbody.insertRow();
                 const italianCell = headerRow.insertCell(0);
                 const englishCell = headerRow.insertCell(1);
+                const deleteCell = headerRow.insertCell(2);
                 italianCell.textContent = 'Other language';
                 englishCell.textContent = 'English';
+                deleteCell.textContent = 'Actions';
                 italianCell.style.color = '#888';
                 englishCell.style.color = '#888';
+                deleteCell.style.color = '#888';
             }
 
             // Add rows for each word
-            words.forEach(word => {
+            words.forEach((word, index) => {
                 const row = tbody.insertRow();
-                const cell1 = row.insertCell(0);
-                const cell2 = row.insertCell(1);
-                cell1.textContent = word.italian;
-                cell2.textContent = word.english;
+                const italian_cell = row.insertCell(0);
+                const english_cell = row.insertCell(1);
+                const deleteCell = row.insertCell(2);
+                deleteCell.className = 'delete-btn-cell';
+                const deleteButton = document.createElement('button');
+                italian_cell.textContent = word.italian;
+                english_cell.textContent = word.english;
+                deleteButton.textContent = '✖️';
+                deleteButton.className = 'delete-btn';
+                deleteButton.onclick = () => deleteRow(category, index);
+                deleteCell.appendChild(deleteButton);
             });
 
             // Update localStorage
@@ -350,6 +360,13 @@
                 
                 updateTable('verbs');
                 updateTable('general');
+            }
+        }
+
+        function deleteRow(category, index) {
+            if (confirm('Are you sure you want to delete this word?')) {
+                vocabulary[category].splice(index, 1);
+                updateTable(category);
             }
         }
     </script>
