@@ -217,12 +217,12 @@
                 const italian_cell = row.insertCell(0);
                 const english_cell = row.insertCell(1);
                 const deleteCell = row.insertCell(2);
-                deleteCell.className = 'delete-btn-cell';
                 const deleteButton = document.createElement('button');
+                deleteCell.className = 'delete-btn-cell';
+                deleteButton.className = 'delete-btn';
                 italian_cell.textContent = word.italian;
                 english_cell.textContent = word.english;
                 deleteButton.textContent = '✖️';
-                deleteButton.className = 'delete-btn';
                 deleteButton.onclick = () => deleteRow(category, index);
                 deleteCell.appendChild(deleteButton);
             });
