@@ -192,7 +192,7 @@ async function getData() {
     
     const tr = document.createElement("tr");
     const tr2 = document.createElement("tr");
-
+    
   fetch(url + query + endpoint)
     .then(
       (response) => {
@@ -226,3 +226,4 @@ async function getData() {
 }
 
 globalBtn.addEventListener("click", getData);
+// globalBtn.addEventListener("click", getchatbot);
