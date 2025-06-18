@@ -4,9 +4,100 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style/contact.css" />
     <title>Contact</title>
   </head>
   <body>
-    <script src="/nodecontactform/app.js"></script>
+    <div class="container">
+      <h1>Contact Me</h1>
+
+      <div class="button-container">
+        <button class="btn" onclick="window.location.href='index.html'">
+          Home
+        </button>
+      </div>
+
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="input-field"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="input-field"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea
+              id="message"
+              name="message"
+              class="input-field textarea-field"
+              placeholder="Enter your message"
+              rows="6"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn submit-btn">Send Message</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <h2>Other Ways to Reach Me</h2>
+        <div class="info-item"><strong>Phone:</strong> 07896145237</div>
+        <div class="info-item"><strong>Email:</strong> Harveyy7@gmail.com</div>
+        <div class="info-item">
+          <strong>LinkedIn:</strong>
+          <a
+            href="https://www.linkedin.com/in/harvey-j-51650388/"
+            target="_blank"
+            >harvey-j-51650388</a
+          >
+        </div>
+        <div class="info-item">
+          <strong>GitHub:</strong>
+          <a href="https://github.com/Harveyj7" target="_blank">Harveyj7</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const message = document.getElementById("message").value;
+
+          // For now, just show an alert. In a real application, you would send this to a server
+          alert(
+            `Thank you for your message, ${name}! I'll get back to you at ${email} soon.`
+          );
+
+          // Clear the form
+          document.getElementById("contactForm").reset();
+        });
+    </script>
   </body>
 </html>
